@@ -12,7 +12,6 @@ import { PowerFactoryComponent } from './hero-creator/power-factory/power-factor
 import { OriginConfiguratorComponent } from './hero-creator/origin-configurator/origin-configurator.component';
 import { OriginSelectorComponent } from './hero-creator/origin-selector/origin-selector.component';
 import { SplashScreenComponent } from './hero-creator/splash-screen/splash-screen.component';
-import { MarkdownComponent, MarkdownModule } from 'ngx-markdown';
 import { HttpClientModule } from '@angular/common/http';
 import { RandomizerApiService } from './services/randomizer-api.service';
 import { PageComponent } from './pdf-creator/page/page.component';
@@ -48,7 +47,6 @@ import { ConfigurationComponent } from './configuration/configuration.component'
   ],
   imports: [
     CommonModule,
-    MarkdownModule.forRoot(),
     HttpClientModule,
     ReactiveFormsModule,
     MatInputModule,
