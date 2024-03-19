@@ -4,7 +4,7 @@ import { BulkHeroCreateComponent } from './main/hero-bulk-creator/bulk-hero-crea
 import { ConfigurationComponent } from './main/configuration/configuration.component';
 
 export const routes: Routes = [
-  { path: '', component: MainComponent },
+  { pathMatch: 'full', path: '', redirectTo: 'bulk-create' },
   { path: 'bulk-create', component: BulkHeroCreateComponent },
   { path: 'config', component: ConfigurationComponent },
 ];
