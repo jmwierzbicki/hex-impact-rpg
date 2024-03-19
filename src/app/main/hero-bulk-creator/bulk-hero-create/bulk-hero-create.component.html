@@ -1,0 +1,32 @@
+<h1 class="title">Bulk generator</h1>
+<p class="subtitle">Generate multiple character templates:</p>
+
+
+<form [formGroup]="form">
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Number of templates:</mat-label>
+    <input matInput placeholder="maximum 10" formControlName="count">
+  </mat-form-field>
+</form>
+<!--<button mat-raised-button color="primary" (click)="generateTemplates()">Generate</button>-->
+
+<!--<button *ngIf="characters.length" mat-raised-button color="primary" (click)="print()">print</button>-->
+
+<div class="field is-grouped">
+  <div class="control">
+    <button type="button" class="button is-link" (click)="generateTemplates()">Generate</button>
+  </div>
+  <div class="control">
+    <button type="button" [disabled]="!characters.length" class="button is-link is-danger" (click)="print()">print</button>
+  </div>
+</div>
+
+
+<div id="character-container" *ngIf="characters.length > 0" class="generation-container">
+  <ng-container *ngFor="let character of characters">
+    <app-hero-result-card [hero]="character"></app-hero-result-card>
+  </ng-container>
+
+
+</div>

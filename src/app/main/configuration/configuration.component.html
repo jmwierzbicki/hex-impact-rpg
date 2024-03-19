@@ -1,0 +1,144 @@
+<form>
+  <h1>Attributes</h1>
+  <div class="field is-horizontal">
+    <div class="field-label">
+      <label class="label">Initial Value</label>
+    </div>
+    <div class="field-body">
+      <div class="field">
+        <p class="control">
+          <input class="input" [formControl]="configForm.controls.attributes.controls.initialValue">
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="field is-horizontal">
+    <div class="field-label">
+      <label class="label">Minimum value</label>
+    </div>
+    <div class="field-body">
+      <div class="field">
+        <p class="control">
+          <input class="input"  [formControl]="configForm.controls.attributes.controls.minValue">
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="field is-horizontal">
+    <div class="field-label">
+      <label class="label">Maximum value</label>
+    </div>
+    <div class="field-body">
+      <div class="field">
+        <p class="control">
+          <input class="input"  [formControl]="configForm.controls.attributes.controls.maxValue">
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="field is-horizontal">
+    <div class="field-label">
+      <label class="label">Iterations</label>
+    </div>
+    <div class="field-body">
+      <div class="field">
+        <p class="control">
+          <input class="input"  [formControl]="configForm.controls.attributes.controls.iterations">
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <h1>Origins and careers</h1>
+  <div class="field is-horizontal">
+    <div class="field-label">
+      <label class="label">Number of choices</label>
+    </div>
+    <div class="field-body">
+      <div class="field">
+        <p class="control">
+          <input class="input"  [formControl]="configForm.controls.careers.controls.count">
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <h1>Specialities</h1>
+  <div class="field is-horizontal">
+    <div class="field-label">
+      <label class="label">Speciality sets count</label>
+    </div>
+    <div class="field-body">
+      <div class="field">
+        <p class="control">
+          <input class="input"  [formControl]="configForm.controls.specialities.controls.sets">
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="field is-horizontal">
+    <div class="field-label">
+      <label class="label">Items in set</label>
+    </div>
+    <div class="field-body">
+      <div class="field">
+        <p class="control">
+          <input class="input"  [formControl]="configForm.controls.specialities.controls.count">
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <h1>Powers</h1>
+  <div class="field is-horizontal">
+    <div class="field-label">
+      <label class="label">Power sets count</label>
+    </div>
+    <div class="field-body">
+      <div class="field">
+        <p class="control">
+          <input class="input"  [formControl]="configForm.controls.powers.controls.sets">
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="field is-horizontal">
+    <div class="field-label">
+      <label class="label">Powers in set</label>
+    </div>
+    <div class="field-body">
+      <div class="field">
+        <p class="control">
+          <input class="input"  [formControl]="configForm.controls.powers.controls.count">
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <h1>Improvements</h1>
+  <div class="field is-horizontal">
+    <div class="field-label">
+      <label class="label">Improvements count</label>
+    </div>
+    <div class="field-body">
+      <div class="field">
+        <p class="control">
+          <input class="input"  [formControl]="configForm.controls.improvements.controls.count">
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="field is-grouped">
+    <div class="control">
+      <button type="button" [disabled]="configForm.pristine" class="button is-link" (click)="saveConfig()">Save</button>
+    </div>
+    <div class="control">
+    <button type="button" [disabled]="!configService.isCustomConfig" class="button is-link is-danger" (click)="restore()">Restore defaults</button>
+  </div>
+  </div>
+</form>

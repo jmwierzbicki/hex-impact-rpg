@@ -1,0 +1,46 @@
+.app-container {
+  display:flex;
+  flex-direction: column;
+  min-height: 100vh;
+
+  mat-toolbar {
+    flex: 0;
+  }
+
+  mat-drawer-container {
+    flex: 1;
+  }
+
+}
+
+.example-icon {
+  padding: 0 14px;
+}
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.logo-container {
+display: flex;
+;
+}
+
+.logo {
+  margin-left: auto;
+  margin-right: auto;
+  width:100px;
+  user-select: none;
+  pointer-events: none;
+  user-drag: none;
+  -webkit-user-drag: none;
+
+}
+
+.side-nav-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.sidenav-content {
+  padding:30px;
+}

@@ -1,0 +1,89 @@
+@if (hero) {
+  <page>
+    <div class="block"></div>
+    <h1 class="block notification is-warning">{{ hero.name }}</h1>
+    <h2>Attributes:</h2>
+    <ul class="block">
+      <li><b>awareness</b>: {{ hero.attributes?.awareness }}</li>
+      <li><b>prowess</b>: {{ hero.attributes?.prowess }}</li>
+      <li><b>coordination</b>: {{ hero.attributes?.coordination }}</li>
+      <li><b>intellect</b>: {{ hero.attributes?.intellect }}</li>
+      <li><b>willpower</b>: {{ hero.attributes?.willpower }}</li>
+      <li><b>strength</b>: {{ hero.attributes?.strength }}</li>
+    </ul>
+    <div class="avoid-break">
+      <h1 class="">Origins:</h1>
+
+      <div class="block level">
+        <div *ngFor="let origin of hero.originCareer" class="level-item ">
+          <div class="box">
+            <h1>{{ origin.origin.name }}</h1>
+            <p>{{ origin.career.name }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="avoid-break">
+      <h1 class="title">Specialities:</h1>
+
+      <div class="columns is-multiline is-3">
+        <div
+          *ngFor="let set of hero.specialitiesSets; index as i"
+          class="column  is-3"
+        >
+          <div class="box">
+            <div *ngFor="let speciality of set">
+              <b>{{speciality.name}}</b>
+              <p>{{speciality.desc}}</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="avoid-break">
+      <h1 class="title">Powers:</h1>
+
+      <div *ngFor="let type of hero.powerSets | keyvalue" class="block">
+        <h3>{{type.key}}:</h3>
+        <div class="columns is-multiline is-3">
+          <div
+            *ngFor="let set of type.value.sets; index as i"
+            class="column is-full"
+          >
+            <div class="box">
+              <b>set {{i+1}}</b>
+              <div *ngFor="let power of set.powers; index as i">
+<!--                @if (i !== 0) {-->
+<!--                  <hr>-->
+<!--                }-->
+                <div>
+                  <h5><b>{{power.powerName}}</b></h5>
+                  <div><b><i *ngIf="power.powerDesc">description: </i></b>{{power.powerDesc}}</div>
+                  <div><b><i *ngIf="power.powerExtrasText">extras: </i></b>{{power.powerExtrasText}}</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="avoid-break">
+      <div class="block box">
+        <h1>Improvements</h1>
+        <p *ngFor="let improvement of hero.improvements" >
+          {{improvement.desc}}
+        </p>
+      </div>
+    </div>
+
+
+
+
+
+  </page>
+}

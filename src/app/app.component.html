@@ -1,0 +1,55 @@
+<div class="app-container">
+  <mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <button (click)="drawer.toggle()" *ngIf="isSmallScreen$| async" mat-button>
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span>{{ title }}</span>
+    </mat-toolbar-row>
+
+    @if (!(isSmallScreen$ | async)) {
+      <mat-toolbar-row class="hide-sm">
+        <ng-container *ngTemplateOutlet="menuItems"></ng-container>
+      </mat-toolbar-row>
+    }
+
+  </mat-toolbar>
+
+
+  <mat-drawer-container autosize class="main-container">
+    <mat-drawer #drawer class="sidenav" mode="side">
+      @if (isSmallScreen$ | async) {
+        <div class="side-nav-container">
+          <ng-container *ngTemplateOutlet="menuItems"></ng-container>
+        </div>
+      }
+
+
+    </mat-drawer>
+
+    <ng-template #menuItems>
+<!--      <button mat-button>Create Hero</button>-->
+      <button [routerLink]="'bulk-create'" mat-button>Bulk Create</button>
+      <button [routerLink]="'config'" mat-button>Configuration</button>
+<!--      <button mat-button>Power list</button>-->
+<!--      <button mat-button>Speciality list</button>-->
+    </ng-template>
+
+    <div class="sidenav-content container">
+
+      <div class="box">
+        <div class="logo-container">
+          <img alt="" class="logo" draggable="false" src="/assets/hex-logo.png">
+        </div>
+        <router-outlet/>
+      </div>
+
+
+
+
+    </div>
+
+
+
+  </mat-drawer-container>
+</div>

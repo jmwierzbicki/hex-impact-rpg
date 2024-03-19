@@ -1,0 +1,33 @@
+{{formStep | json}}
+<ng-container *ngIf="db.dbPopulated">
+  <ng-container [ngSwitch]="formStep">
+
+    <ng-container *ngSwitchCase="STEPS.START_SCREEN">
+      <app-splash-screen></app-splash-screen>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="STEPS.ROLL_ORIGIN">
+      <app-origin-roller></app-origin-roller>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="STEPS.ROLL_ATTRS">
+      <app-attribute-scaler></app-attribute-scaler>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="STEPS.ROLL_SPECIALITIES">
+      <app-specialities-selector></app-specialities-selector>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="STEPS.ROLL_POWERS">
+      <app-power-factory></app-power-factory>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="STEPS.APPLY_ORIGIN">
+      <app-origin-configurator></app-origin-configurator>
+    </ng-container>
+  </ng-container>
+</ng-container>
+
+
+<button (click)="previousStep()">Previous</button>
+<button (click)="nextStep()">Next</button>
