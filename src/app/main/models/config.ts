@@ -11,19 +11,24 @@ export type AttributesCfg = {
   maxValue: number;
   minValue: number;
   iterations: number;
+  enabled: boolean;
 };
 
 export type CareersCfg = {
   count: number;
+  enabled:boolean
 };
 export type SpecialitiesCfg = {
   count: number;
   sets: number;
+  enabled:boolean;
 };
 export type PowersCfg = {
   count: number;
   sets: number;
+  enabled:boolean
 };
 export type ImprovementsCfg = {
   count: number;
+  enabled: boolean
 };

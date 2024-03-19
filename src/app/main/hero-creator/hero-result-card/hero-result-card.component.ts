@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Hero } from '../../models/Hero';
+import {ConfigService} from "../../configuration/config.service";
 
 @Component({
   selector: 'app-hero-result-card',
@@ -8,4 +9,7 @@ import { Hero } from '../../models/Hero';
 })
 export class HeroResultCardComponent {
   @Input() hero?: Hero;
+
+  constructor(public cfg: ConfigService) {
+  }
 }

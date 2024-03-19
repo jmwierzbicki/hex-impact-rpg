@@ -14,20 +14,25 @@ export class ConfigurationComponent implements OnInit {
       maxValue: new FormControl(),
       minValue: new FormControl(),
       iterations: new FormControl(),
+      enabled: new FormControl(),
     }),
     careers: new FormGroup({
       count: new FormControl(),
+      enabled: new FormControl(),
     }),
     specialities: new FormGroup({
       count: new FormControl(),
       sets: new FormControl(),
+      enabled: new FormControl(),
     }),
     powers: new FormGroup({
       count: new FormControl(),
       sets: new FormControl(),
+      enabled: new FormControl(),
     }),
     improvements: new FormGroup({
       count: new FormControl(),
+      enabled: new FormControl(),
     }),
   });
 
@@ -37,6 +42,8 @@ export class ConfigurationComponent implements OnInit {
 
   saveConfig() {
     this.configService.saveConfig(this.configForm.value);
+    this.configForm.markAsPristine();
+    this.configForm.markAsUntouched();
   }
 
   restore() {

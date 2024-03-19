@@ -2,6 +2,18 @@
   <h1>Attributes</h1>
   <div class="field is-horizontal">
     <div class="field-label">
+      <label class="label">Enabled</label>
+    </div>
+    <div class="field-body">
+      <div class="field">
+        <p class="control">
+          <input type="checkbox" [formControl]="configForm.controls.attributes.controls.enabled">
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="field is-horizontal">
+    <div class="field-label">
       <label class="label">Initial Value</label>
     </div>
     <div class="field-body">
@@ -55,6 +67,18 @@
   <h1>Origins and careers</h1>
   <div class="field is-horizontal">
     <div class="field-label">
+      <label class="label">Enabled</label>
+    </div>
+    <div class="field-body">
+      <div class="field">
+        <p class="control">
+          <input type="checkbox" [formControl]="configForm.controls.careers.controls.enabled">
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="field is-horizontal">
+    <div class="field-label">
       <label class="label">Number of choices</label>
     </div>
     <div class="field-body">
@@ -67,6 +91,19 @@
   </div>
 
   <h1>Specialities</h1>
+  <div class="field is-horizontal">
+    <div class="field-label">
+      <label class="label">Enabled</label>
+    </div>
+    <div class="field-body">
+      <div class="field">
+        <p class="control">
+          <input type="checkbox" [formControl]="configForm.controls.specialities.controls.enabled">
+        </p>
+      </div>
+    </div>
+  </div>
+
   <div class="field is-horizontal">
     <div class="field-label">
       <label class="label">Speciality sets count</label>
@@ -96,6 +133,18 @@
   <h1>Powers</h1>
   <div class="field is-horizontal">
     <div class="field-label">
+      <label class="label">Enabled</label>
+    </div>
+    <div class="field-body">
+      <div class="field">
+        <p class="control">
+          <input type="checkbox" [formControl]="configForm.controls.powers.controls.enabled">
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="field is-horizontal">
+    <div class="field-label">
       <label class="label">Power sets count</label>
     </div>
     <div class="field-body">
@@ -121,6 +170,18 @@
   </div>
 
   <h1>Improvements</h1>
+  <div class="field is-horizontal">
+    <div class="field-label">
+      <label class="label">Enabled</label>
+    </div>
+    <div class="field-body">
+      <div class="field">
+        <p class="control">
+          <input type="checkbox" [formControl]="configForm.controls.improvements.controls.enabled">
+        </p>
+      </div>
+    </div>
+  </div>
   <div class="field is-horizontal">
     <div class="field-label">
       <label class="label">Improvements count</label>
