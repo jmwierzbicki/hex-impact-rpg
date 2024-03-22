@@ -1,15 +1,10 @@
-id,name,desc,powerLevel,probability
-1,name,lorem ipsum dolor,3,1
-2,name,lorem ipsum dolor,3,1
-3,name,lorem ipsum dolor,3,1
-4,name,lorem ipsum dolor,3,1
-5,name,lorem ipsum dolor,3,1
-6,name,lorem ipsum dolor,3,1
-7,name,lorem ipsum dolor,3,1
-8,name,lorem ipsum dolor,3,1
-9,name,lorem ipsum dolor,3,1
-10,name,lorem ipsum dolor,3,1
-11,name,lorem ipsum dolor,3,1
-12,name,lorem ipsum dolor,3,1
-12,name,lorem ipsum dolor,3,1
-13,name,lorem ipsum dolor,3,1
+﻿id,probability,description
+IMPROV_RANDOM,2,"Get random power of the chosen type you don't have yet. If you have all types, choose any type you like"
+IMPROV_MOVE,1,Get new movement power or recive an extra or  +1 lvl to one of your movement powers
+IMPROV_OFFE,2,Get new offensive power or recive an extra or  +1 lvl to one of your offensive powers
+IMPROV_DEFEN,2,Get new defensive power or recive an extra or  +1 lvl to one of your defensive powers
+IMPROV_CTRL,2,Get new control power or recive an extra or  +1 lvl to one of your control powers
+IMPROV_MENTAL,2,Get new mental power or recive an extra or  +1 lvl to one of your control powers
+IMPROV_ATTRIBUTE,1,"Increase one of your attributes by 1
+or
+get 1 new random specialty and increase one already owned specilty level by +1"

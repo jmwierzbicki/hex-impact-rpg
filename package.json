@@ -4,8 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "node dist/server/server.js",
-    "build": "ls",
-    "bld": "ng build && tsc -p server/tsconfig.server.json",
+    "bld": "ls",
+    "build": "ng build && tsc -p server/tsconfig.server.json",
 
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
