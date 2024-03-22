@@ -1,0 +1,11 @@
+{{deactivateRouteService.modalVisible}}
+<modal
+  #modalRef
+  [tpl]="confirm"
+  [confirmLabel]="'Yes'"
+  [closeLabel]="'No'"
+  (onConfirm)="deactivateRouteService.resolve!(true)"
+  (onClose)="deactivateRouteService.resolve!(false)"
+>
+</modal>
+<ng-template #confirm>Leaving creator will erase all progress. Do You want to continue?</ng-template>

@@ -1,4 +1,5 @@
 export type Configuration = {
+  isAltered: any;
   attributes: AttributesCfg;
   careers: CareersCfg;
   specialities: SpecialitiesCfg;

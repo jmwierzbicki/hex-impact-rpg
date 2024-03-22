@@ -7,7 +7,10 @@
     <div class="field-body">
       <div class="field">
         <p class="control">
-          <input type="checkbox" [formControl]="configForm.controls.attributes.controls.enabled">
+          <input
+            [formControl]="configForm.controls.attributes.controls.enabled"
+            type="checkbox"
+          >
         </p>
       </div>
     </div>
@@ -19,7 +22,10 @@
     <div class="field-body">
       <div class="field">
         <p class="control">
-          <input class="input" [formControl]="configForm.controls.attributes.controls.sets">
+          <input
+            [formControl]="configForm.controls.attributes.controls.sets"
+            class="input"
+          >
         </p>
       </div>
     </div>
@@ -31,7 +37,10 @@
     <div class="field-body">
       <div class="field">
         <p class="control">
-          <input class="input" [formControl]="configForm.controls.attributes.controls.initialValue">
+          <input
+            [formControl]="configForm.controls.attributes.controls.initialValue"
+            class="input"
+          >
         </p>
       </div>
     </div>
@@ -44,7 +53,10 @@
     <div class="field-body">
       <div class="field">
         <p class="control">
-          <input class="input"  [formControl]="configForm.controls.attributes.controls.minValue">
+          <input
+            [formControl]="configForm.controls.attributes.controls.minValue"
+            class="input"
+          >
         </p>
       </div>
     </div>
@@ -57,7 +69,10 @@
     <div class="field-body">
       <div class="field">
         <p class="control">
-          <input class="input"  [formControl]="configForm.controls.attributes.controls.maxValue">
+          <input
+            [formControl]="configForm.controls.attributes.controls.maxValue"
+            class="input"
+          >
         </p>
       </div>
     </div>
@@ -70,7 +85,10 @@
     <div class="field-body">
       <div class="field">
         <p class="control">
-          <input class="input"  [formControl]="configForm.controls.attributes.controls.iterations">
+          <input
+            [formControl]="configForm.controls.attributes.controls.iterations"
+            class="input"
+          >
         </p>
       </div>
     </div>
@@ -84,7 +102,10 @@
     <div class="field-body">
       <div class="field">
         <p class="control">
-          <input type="checkbox" [formControl]="configForm.controls.careers.controls.enabled">
+          <input
+            [formControl]="configForm.controls.careers.controls.enabled"
+            type="checkbox"
+          >
         </p>
       </div>
     </div>
@@ -96,7 +117,10 @@
     <div class="field-body">
       <div class="field">
         <p class="control">
-          <input class="input"  [formControl]="configForm.controls.careers.controls.count">
+          <input
+            [formControl]="configForm.controls.careers.controls.count"
+            class="input"
+          >
         </p>
       </div>
     </div>
@@ -110,7 +134,10 @@
     <div class="field-body">
       <div class="field">
         <p class="control">
-          <input type="checkbox" [formControl]="configForm.controls.specialities.controls.enabled">
+          <input
+            [formControl]="configForm.controls.specialities.controls.enabled"
+            type="checkbox"
+          >
         </p>
       </div>
     </div>
@@ -123,7 +150,10 @@
     <div class="field-body">
       <div class="field">
         <p class="control">
-          <input class="input"  [formControl]="configForm.controls.specialities.controls.sets">
+          <input
+            [formControl]="configForm.controls.specialities.controls.sets"
+            class="input"
+          >
         </p>
       </div>
     </div>
@@ -136,7 +166,10 @@
     <div class="field-body">
       <div class="field">
         <p class="control">
-          <input class="input"  [formControl]="configForm.controls.specialities.controls.initialChoices">
+          <input
+            [formControl]="configForm.controls.specialities.controls.initialChoices"
+            class="input"
+          >
         </p>
       </div>
     </div>
@@ -149,7 +182,10 @@
     <div class="field-body">
       <div class="field">
         <p class="control">
-          <input class="input"  [formControl]="configForm.controls.specialities.controls.count">
+          <input
+            [formControl]="configForm.controls.specialities.controls.count"
+            class="input"
+          >
         </p>
       </div>
     </div>
@@ -163,7 +199,10 @@
     <div class="field-body">
       <div class="field">
         <p class="control">
-          <input type="checkbox" [formControl]="configForm.controls.powers.controls.enabled">
+          <input
+            [formControl]="configForm.controls.powers.controls.enabled"
+            type="checkbox"
+          >
         </p>
       </div>
     </div>
@@ -175,7 +214,10 @@
     <div class="field-body">
       <div class="field">
         <p class="control">
-          <input class="input"  [formControl]="configForm.controls.powers.controls.sets">
+          <input
+            [formControl]="configForm.controls.powers.controls.sets"
+            class="input"
+          >
         </p>
       </div>
     </div>
@@ -188,7 +230,10 @@
     <div class="field-body">
       <div class="field">
         <p class="control">
-          <input class="input"  [formControl]="configForm.controls.powers.controls.count">
+          <input
+            [formControl]="configForm.controls.powers.controls.count"
+            class="input"
+          >
         </p>
       </div>
     </div>
@@ -202,7 +247,10 @@
     <div class="field-body">
       <div class="field">
         <p class="control">
-          <input type="checkbox" [formControl]="configForm.controls.improvements.controls.enabled">
+          <input
+            [formControl]="configForm.controls.improvements.controls.enabled"
+            type="checkbox"
+          >
         </p>
       </div>
     </div>
@@ -214,17 +262,46 @@
     <div class="field-body">
       <div class="field">
         <p class="control">
-          <input class="input"  [formControl]="configForm.controls.improvements.controls.count">
+          <input
+            [formControl]="configForm.controls.improvements.controls.count"
+            class="input"
+          >
         </p>
       </div>
     </div>
   </div>
-  <div class="field is-grouped">
+  <div
+    *ngIf="!localOnly"
+    class="field is-grouped"
+  >
     <div class="control">
-      <button type="button" [disabled]="configForm.pristine" class="button is-link" (click)="saveConfig()">Save</button>
+      <button
+        (click)="saveConfig()"
+        [disabled]="configForm.pristine"
+        class="button is-link"
+        type="button"
+      >Save
+      </button>
     </div>
     <div class="control">
-    <button type="button" [disabled]="!configService.isCustomConfig" class="button is-link is-danger" (click)="restore()">Restore defaults</button>
+      <button
+        (click)="restore()"
+        [disabled]="!configService.config.isAltered"
+        class="button is-link is-danger"
+        type="button"
+      >Restore defaults
+      </button>
+    </div>
   </div>
+  <div *ngIf="localOnly">
+    <div class="control">
+      <button
+        (click)="restore()"
+        [disabled]="configForm.pristine"
+        class="button is-link is-danger"
+        type="button"
+      >Restore defaults
+      </button>
+    </div>
   </div>
 </form>

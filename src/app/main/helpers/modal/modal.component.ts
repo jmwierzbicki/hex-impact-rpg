@@ -1,4 +1,4 @@
-import {Component, HostListener, Input, TemplateRef} from '@angular/core';
+import {Component, EventEmitter, HostListener, Input, Output, TemplateRef} from '@angular/core';
 
 @Component({
   selector: 'modal',
@@ -14,6 +14,12 @@ export class ModalComponent {
   tpl?:TemplateRef<any>;
 
   active: boolean = false
+
+  @Input() public confirmLabel?: string;
+  @Input() public closeLabel = 'Close'
+
+  @Output() public onConfirm: EventEmitter<boolean> = new EventEmitter()
+  @Output() onClose = new EventEmitter<boolean>();
 
   open() {
     this.active = true;

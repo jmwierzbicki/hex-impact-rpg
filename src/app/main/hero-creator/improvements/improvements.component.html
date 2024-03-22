@@ -82,6 +82,30 @@
 
 <div class="section">
   <div
+    *ngIf="form.value.specialities.length > 0"
+    class="block"
+  >
+    <h1>Specialities:</h1>
+    <ng-container
+      *ngFor="let speciality of form.value.specialities"
+
+    >
+      <div
+        *ngIf="speciality"
+        class="media"
+      >
+        <div class="media-content">
+          <h5 class="title is-5 has-text-weight-bold">{{ speciality.name }}</h5>
+          <p>{{ speciality.description }}</p>
+        </div>
+      </div>
+
+    </ng-container>
+  </div>
+
+</div>
+<div class="section">
+  <div
     *ngIf="powers.length > 0"
     class="block"
   >
@@ -90,7 +114,41 @@
       *ngFor="let power of powers"
 
     >
-      <app-power-media [power]="power"></app-power-media>
+      <app-power-media
+        [power]="power"
+        [burn]="true"
+        class="media is-block power-container ng-star-inserted"
+      ></app-power-media>
+    </ng-container>
+  </div>
+
+</div>
+
+<div class="section">
+  <div
+    class="block"
+  >
+    <h1>Extra powers:</h1>
+    <p class="subtitle">If for some reason You need to add a power, use following button</p>
+    <div class="block">
+      <modal #modalInstance class="" [tpl]="browserTpl"><button class="block button is-primary">Add powers</button></modal>
+    </div>
+
+    <ng-template #browserTpl>
+      <app-power-browser [addable]="true" (onAdd)="extraPowers.push($event); modalInstance.close()"></app-power-browser>
+    </ng-template>
+
+    <ng-container
+      *ngFor="let power of extraPowers; index as i"
+
+    >
+      <app-power-media
+        [burn]="false"
+        [delete]="true"
+        [power]="power"
+        (onDelete)="extraPowers.splice(i, 1)"
+        class="media is-block power-container ng-star-inserted"
+      ></app-power-media>
     </ng-container>
   </div>
 

@@ -21,16 +21,12 @@ export class ImprovementsComponent implements OnInit, OnDestroy {
 
   public attributes: { [key: string]: number } = {};
   public powers: IPower[] = [];
+  public extraPowers: IPower[] = [];
 
-  constructor(public heroBuilder: HeroBuilderService, public cfg: ConfigService) {
-  }
+
 
   ngOnInit() {
-    // console.log(this.data)
-
-
-    // this.adjustmentForm.patchValue(this.heroBuilder.adjustments, {emitEvent: false})
-
+   
     this.form.valueChanges.pipe(takeUntil(this.$destroy)).subscribe((val) => {
       this.powers = [];
       const tmpPowers: IPower[] = []
@@ -47,16 +43,7 @@ export class ImprovementsComponent implements OnInit, OnDestroy {
             el.id === obj.id
           ))
       );
-
-
     })
-
-
-    // this.attributes = this.adjustmentForm.controls.attributes.value as any
-
-    // Object.entries(this.data?.powers as {[key: string]: IPower[]}).forEach(([key, value]) => {
-    //   this.powers.push(...value)
-    // } )
   }
 
   ngOnDestroy() {

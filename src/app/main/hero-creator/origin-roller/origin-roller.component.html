@@ -1,12 +1,41 @@
-<div class="block level">
-  <div *ngFor="let origin of originSets" class="level-item ">
-    <input class="is-hidden" #radioBtn type="radio" name="attributeSetRadio" [formControl]="control" [value]="origin">
-    <div class="box is-clickable"
-         (click)="radioBtn.click()"
-         [class.has-background-success-dark]="radioBtn.checked"
-         [class.has-text-success-light]="radioBtn.checked"
+<div class="columns block">
+  <div
+    *ngFor="let origin of originSets"
+    class="column"
+  >
+    <input
+      #radioBtn
+      [formControl]="control"
+      [value]="origin"
+      class="is-hidden"
+      name="attributeSetRadio"
+      type="radio"
+    >
+    <div
+      (click)="radioBtn.click()"
+      [class.has-background-success-dark]="radioBtn.checked"
+      [class.has-text-success-light]="radioBtn.checked"
+      class="box is-clickable"
     >
       <h1>{{ origin.name }}</h1>
+      <p>{{ origin.description }}</p>
+      <span (click)="$event.stopPropagation()">
+        <modal
+          [title]="origin.name"
+          [tpl]="originTmpl"
+        >
+          <button
+            class="button is-info  is-size-7"
+          ><i class="fa fa-magnifying-glass mr-5"></i> Details
+          </button>
+        </modal>
+      </span>
+
+      <ng-template #originTmpl>
+        <p>{{origin.description}}</p>
+        <p>{{origin.mechanics}}</p>
+      </ng-template>
+
     </div>
   </div>
 </div>

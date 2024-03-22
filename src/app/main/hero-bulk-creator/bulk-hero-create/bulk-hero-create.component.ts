@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { RandomizerApiService } from '../../services/randomizer-api.service';
 import { Hero } from '../../models/Hero';
@@ -11,6 +11,8 @@ import { ConfigService } from '../../configuration/config.service';
 import prand from 'pure-rand';
 import {RNG} from "../../helpers/rng";
 import {Deck} from "../../models/Deck";
+import slugify from "slugify";
+import {ConfigurationComponent} from "../../configuration/configuration.component";
 
 @Component({
   selector: 'app-bulk-hero-create',
@@ -19,45 +21,60 @@ import {Deck} from "../../models/Deck";
 })
 export class BulkHeroCreateComponent {
   form = new FormGroup({
-    count: new FormControl(1),
+    seed: new FormControl(''),
   });
 
+  @ViewChild('configForm') public configFormComponent?: ConfigurationComponent
+
   decks: Deck[] = [];
+  activeTab: 'Generator' | 'Configure' = 'Generator'
+
+  get cfg() {
+    if (this.configFormComponent && this.configFormComponent.configForm.dirty) {
+      return this.configFormComponent.configForm.value as any
+    }
+    return this.configService.config
+  }
 
   constructor(
     public randomizer: RandomizerApiService,
-    private cfg: ConfigService,
+    private configService: ConfigService,
   ) {}
 
   generateTemplates() {
-    console.log(this.cfg.config)
-    // RNG.toggleSeed(false);
-    this.decks = [];
-    let count = this.form.value.count || 1;
-    for (let i = 0; i < count; i++) {
-      const deck = new Deck();
-      deck.attributes = this.randomizer.getAttributeSets(
-        this.cfg.config.attributes,
-      );
-      deck.origin = this.randomizer.getOriginSet(
-        this.cfg.config.careers,
-      );
-      deck.specialitiesSets = this.randomizer.getSpecialitySets(
-        this.cfg.config.specialities,
-      );
-      deck.powerSets = this.randomizer.getRandomPowerSets(
-        this.cfg.config.powers,
-      ).powerSets;
-      deck.improvements = this.randomizer.getRandomImprovements(
-        this.cfg.config.improvements,
-      );
+    const deck = new Deck();
+    let seed: string = this.form.controls.seed.value || generateId(null, {
+      caseStyle: 'titlecase',
+      delimiter: ' ',
+    });
+    seed = slugify(seed, {
+      remove: undefined,
+      lower: true,
+      strict: true,
+      trim: true
+    })
+    RNG.setRngSeed(seed);
+    deck.name=seed
 
-      deck.name = generateId(null, {
-        caseStyle: 'titlecase',
-        delimiter: ' ',
-      });
-      this.decks.push(deck);
-    }
+    this.decks = [];
+    let count = this.form.value.seed || 1;
+
+    deck.attributes = this.randomizer.getAttributeSets(
+      this.cfg.attributes,
+    );
+    deck.origin = this.randomizer.getOriginSet(
+      this.cfg.careers,
+    );
+    deck.specialitiesSets = this.randomizer.getSpecialitySets(
+      this.cfg.specialities,
+    );
+    deck.powerSets = this.randomizer.getRandomPowerSets(
+      this.cfg.powers,
+    ).powerSets;
+    deck.improvements = this.randomizer.getRandomImprovements(
+      this.cfg.improvements,
+    );
+    this.decks.push(deck);
     RNG.toggleSeed(true);
   }
 
@@ -94,28 +111,5 @@ export class BulkHeroCreateComponent {
     }
   }
 
-  rng() {
-    // RNG.resetCounter()
-    let a = 0
-
-    let dice = {
-      0: 0,
-      1: 0,
-      2: 0,
-      3: 0,
-      4: 0,
-      5: 0,
-    }
-    for (let i = 0; i < 1000000; i++) {
-      let result = RNG.generate(6)
-      // @ts-ignore
-      dice[result]++
-    }
-    console.log(dice)
-
-
-  }
-  resetRng() {
-  }
 
 }

@@ -36,4 +36,10 @@
   (click)="drawFn()"
 >Draw speciality
 </button>
+<button
+  [disabled]="revealedCards <= cfg.config.specialities.initialChoices"
+  class="button is-danger ml-3"
+  (click)="unDrawFn()"
+>Undo draw
+</button>
 

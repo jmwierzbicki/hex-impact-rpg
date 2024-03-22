@@ -91,10 +91,12 @@
 
 }
 
+<app-deactivate-route></app-deactivate-route>
+
 <ng-template #menuItems>
   <button mat-button [routerLink]="'hero-creator'">Create Hero</button>
   <button *ngIf="userService.user?.isAdmin" [routerLink]="'bulk-create'" mat-button>Bulk Create</button>
   <button *ngIf="userService.user?.isAdmin" [routerLink]="'config'" mat-button>Configuration</button>
-        <button mat-button>Power list</button>
-  <!--      <button mat-button>Speciality list</button>-->
+        <button mat-button [routerLink]="'power-browser'">Power list</button>
+        <button *ngIf="userService.user?.isAdmin" mat-button [routerLink]="'user-list'">UserList</button>
 </ng-template>

@@ -17,6 +17,7 @@
 
     </section>
     <footer class="modal-card-foot">
+      <button *ngIf="confirmLabel" class="button" (click)="onConfirm.emit(true); close()">Confirm</button>
       <button class="button" (click)="close()">Close</button>
     </footer>
   </div>

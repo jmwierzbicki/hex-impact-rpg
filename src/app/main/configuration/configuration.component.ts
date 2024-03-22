@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ConfigService } from './config.service';
 import {appConfigurationDefaults} from "../../../config/constants";
+import {Configuration} from "../models/config";
 
 @Component({
   selector: 'app-configuration',
@@ -9,7 +10,10 @@ import {appConfigurationDefaults} from "../../../config/constants";
   styleUrl: './configuration.component.scss',
 })
 export class ConfigurationComponent implements OnInit {
+  @Input() public localOnly: boolean = false
+
   public configForm = new FormGroup({
+    isAltered: new FormControl(true),
     attributes: new FormGroup({
       sets: new FormControl(),
       initialValue: new FormControl(),
@@ -39,19 +43,24 @@ export class ConfigurationComponent implements OnInit {
     }),
   });
 
-  ngOnInit() {
-    this.configForm.setValue(appConfigurationDefaults);
+  async ngOnInit() {
+    this.configForm.setValue(appConfigurationDefaults );
     this.configForm.patchValue(this.configService.config);
   }
 
-  saveConfig() {
-    this.configService.saveConfig(this.configForm.value);
+  async saveConfig() {
+    await this.configService.saveConfig(this.configForm.value as any);
     this.configForm.markAsPristine();
     this.configForm.markAsUntouched();
   }
 
-  restore() {
-    this.configService.clearConfig();
+  async restore() {
+    if (this.localOnly) {
+      this.configForm.reset(this.configService.config);
+      return
+    }
+    await this.configService.deleteConfig();
+    await this.configService.getConfig();
     this.configForm.reset(this.configService.config);
   }
 

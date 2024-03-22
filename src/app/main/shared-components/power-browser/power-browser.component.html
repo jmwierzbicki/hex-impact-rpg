@@ -1,0 +1,26 @@
+<div class="control has-icons-left has-icons-right block">
+  <input
+    (input)="search()"
+    [(ngModel)]="searchTerm"
+    class="input is-large"
+  />
+  <span class="icon is-medium is-left">
+    <i class="fas fa-magnifying-glass"></i>
+  </span>
+  <span
+    (click)="searchTerm=''"
+    class="icon is-medium is-right is-clickable"
+  >
+    <i class="fas fa-times"></i>
+  </span>
+</div>
+
+<app-power-media
+  *ngFor="let power of filteredPowers"
+  [burn]="false"
+  [delete]="false"
+  [power]="power"
+  [addable]="addable"
+  (onAdd)="onAdd.emit($event)"
+  class="media"
+></app-power-media>

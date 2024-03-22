@@ -68,13 +68,11 @@ export class HeroCreatorComponent implements OnInit {
     this.deck.powerSets = powers.powerSets
     this.deck.powerTypes = powers.powerTypes
 
-    console.log(this.deck.powerSets)
 
     this.deck.improvements = this.randomizer.getRandomImprovements(
       this.cfg.config.improvements,
     );
 
-    console.log(this.deck)
 
 
 
@@ -92,6 +90,13 @@ export class HeroCreatorComponent implements OnInit {
     }
     this.specialityCardDrawn++
     this.heroCreatorForm.controls.specialities.push(new FormControl(null, [Validators.required]))
+  }
+
+  unDrawSpecialityCard() {
+    if (this.specialityCardDrawn > 0 && this.specialityCardDrawn > this.cfg.config.specialities.initialChoices) {
+      this.specialityCardDrawn--;
+      this.heroCreatorForm.controls.specialities.removeAt(this.specialityCardDrawn);
+    }
   }
 
   drawPowerCard(type: string) {

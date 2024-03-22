@@ -1,6 +1,7 @@
 import { Configuration } from '../app/main/models/config';
 
 export const appConfigurationDefaults: Configuration = {
+  isAltered: false,
   attributes: {
     sets: 3,
     initialValue: 4,

@@ -1,38 +1,63 @@
 <h1 class="title">Bulk generator</h1>
 <p class="subtitle">Generate multiple character templates:</p>
 
-
-<form [formGroup]="form">
-
-  <mat-form-field class="example-full-width">
-    <mat-label>Number of templates:</mat-label>
-    <input matInput placeholder="maximum 10" formControlName="count">
-  </mat-form-field>
-</form>
-<!--<button mat-raised-button color="primary" (click)="generateTemplates()">Generate</button>-->
-
-<!--<button *ngIf="characters.length" mat-raised-button color="primary" (click)="print()">print</button>-->
-
-<div class="field is-grouped">
-  <div class="control">
-    <button type="button" class="button is-link" (click)="generateTemplates()">Generate</button>
-  </div>
-  <div class="control">
-    <button type="button" [disabled]="!decks.length" class="button is-link is-danger" (click)="print()">print</button>
-  </div>
-  <div class="control">
-    <button type="button" class="button is-link" (click)="rng()">rng</button>
-  </div>
-  <div class="control">
-    <button type="button" class="button is-link" (click)="resetRng()">reset</button>
-  </div>
+<div class="tabs">
+  <ul>
+    <li [class.is-active]="activeTab === 'Generator'"><a (click)="activeTab = 'Generator'">Generator</a></li>
+    <li [class.is-active]="activeTab === 'Configure'"><a (click)="activeTab = 'Configure'">Configure</a></li>
+  </ul>
 </div>
 
+<app-configuration
+  #configForm
+  [hidden]="activeTab !=='Configure'"
+  [localOnly]="true"
+></app-configuration>
+<div [hidden]="activeTab !=='Generator'">
+  <div class="block">
+    <form [formGroup]="form">
+      <div class="control ">
+        <label>seed:</label>
+        <input
+          class="input"
+          formControlName="seed"
+        >
+      </div>
+    </form>
+  </div>
 
-<div id="character-container" *ngIf="decks.length > 0" class="generation-container">
-  <ng-container *ngFor="let deck of decks">
-    <app-hero-result-card [deck]="deck"></app-hero-result-card>
-  </ng-container>
+
+  <!--<button mat-raised-button color="primary" (click)="generateTemplates()">Generate</button>-->
+
+  <!--<button *ngIf="characters.length" mat-raised-button color="primary" (click)="print()">print</button>-->
+
+  <div class="field is-grouped">
+    <div class="control">
+      <button
+        (click)="generateTemplates()"
+        class="button is-link"
+        type="button"
+      >Generate
+      </button>
+    </div>
+    <!--  <div class="control">-->
+    <!--    <button type="button" [disabled]="!decks.length" class="button is-link is-danger" (click)="print()">print</button>-->
+    <!--  </div>-->
+  </div>
 
 
+  <div
+    *ngIf="decks.length > 0"
+    class="generation-container"
+    id="character-container"
+  >
+    <ng-container *ngFor="let deck of decks">
+      <app-hero-result-card
+        [config]="cfg"
+        [deck]="deck"
+      ></app-hero-result-card>
+    </ng-container>
+
+
+  </div>
 </div>

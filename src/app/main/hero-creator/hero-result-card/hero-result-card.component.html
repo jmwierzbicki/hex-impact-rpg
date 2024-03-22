@@ -2,7 +2,7 @@
   <page>
     <div class="block"></div>
     <h1 class="block notification is-warning">{{ deck.name }}</h1>
-    @if (cfg.config.attributes.enabled) {
+    @if (config.attributes.enabled) {
       <h2>Attributes:</h2>
       <div class="columns">
         <div class="column" *ngFor="let attrSet of deck.attributes">
@@ -19,7 +19,7 @@
 
     }
 
-    @if (cfg.config.careers.enabled) {
+    @if (config.careers.enabled) {
       <div class="avoid-break">
         <h1 class="">Origins:</h1>
 
@@ -35,7 +35,7 @@
 
 
 
-    @if (cfg.config.specialities.enabled) {
+    @if (config.specialities.enabled) {
       <div class="avoid-break">
         <h1 class="title">Specialities:</h1>
 
@@ -56,7 +56,7 @@
       </div>
     }
 
-    @if (cfg.config.powers.enabled) {
+    @if (config.powers.enabled) {
       <div class="avoid-break">
         <h1 class="title">Powers:</h1>
 
@@ -87,7 +87,7 @@
       </div>
     }
 
-    @if (cfg.config.improvements.enabled) {
+    @if (config.improvements.enabled) {
       <div class="avoid-break">
         <div class="block box">
           <h1>Improvements</h1>

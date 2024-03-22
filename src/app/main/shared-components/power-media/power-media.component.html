@@ -1,10 +1,11 @@
-<div *ngIf="power" class="media is-block power-container" [class.burned]="burnCheckbox.checked">
+<div *ngIf="power" class="" [class.burned]="burnCheckbox.checked">
+  <input [appWatchObject]="power" (dataChange)="burnCheckbox.checked = false" class="is-hidden" type="checkbox" #burnCheckbox>
   <div class="is-flex">
     <div class="media-content">
       <div class="">
         <div>
           <p class="title is-5 has-text-weight-bold">{{ power.name }}</p>
-          <div>
+          <div class="mb-3">
             <table>
               <tr>
                 <td class="has-text-right">type</td>
@@ -28,8 +29,13 @@
       </div>
     </div>
     <div class="media-right">
-      <div>
-        <input [appWatchObject]="power" (dataChange)="burnCheckbox.checked = false" class="is-hidden" type="checkbox" #burnCheckbox>
+      <div *ngIf="delete">
+        <button class="button is-danger" (click)="onDelete.emit(true)">
+          <i class="fa fa-trash"></i>
+        </button>
+      </div>
+      <div *ngIf="burn">
+
         <button class="button is-danger" (click)="burnCheckbox.click()">
           {{ burnCheckbox.checked ? 'unburn power' : 'Burn power 🔥' }}
         </button>
@@ -69,4 +75,6 @@
       </ng-container>
     </div>
   </div>
+  <button (click)="onAdd.emit(power)" *ngIf="addable" class="button is-primary">Add <i class="fa fa-plus"></i> </button>
 </div>
+

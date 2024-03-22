@@ -1,13 +1,12 @@
 import {app} from "./app";
-import CyclicDb, {collection} from "@cyclic.sh/dynamodb"
+import CyclicDb from "@cyclic.sh/dynamodb"
 import slugify  from "slugify";
 const db: typeof CyclicDb = CyclicDb("modern-lime-goslingCyclicDB")
 // @ts-ignore
 import { generateId } from 'zoo-ids';
 import {genID} from "../src/app/main/helpers/gen-id";
-import e from "express";
 
-const adminList: string = process.env['admins']!;
+const adminList: string = process.env['admins']! || 'test1234';
 
 const admins = adminList.split(',').map(id => genID(id))
 const usersCollection = db.collection('users')
@@ -55,18 +54,37 @@ app.get('/api/list-users', async (req, res) => {
 
 app.post('/api/reset-hash', async (req, res) => {
   try {
-    const { id } = req.body;
-    const user = await usersCollection.get(id);
-
-    const oldHash = user.props.hash
-    user.props.hash = generateId(null, {
+    const { id, seed } = req.body;
+    console.log(seed)
+    const {props: oldUser} = await usersCollection.get(id);
+    const newData = {...oldUser}
+    delete newData.created
+    delete newData.id
+    delete newData.updated
+    newData.hash = seed || generateId(null, {
       caseStyle: 'lowercase',
       delimiter: '-',
-    })
-    user.props.oldHashes.push(oldHash)
-    await usersCollection.set(id, user, {});
+    });
+    console.log(newData.hash)
+    newData.oldHashes.unshift(oldUser.hash);
+    newData.oldHashes.splice(5)
+
+    await usersCollection.set(id, newData, {});
 
     res.json(await usersCollection.get(id));
+  } catch (e) {
+    console.error(e);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+app.post('/api/remove-user', async (req, res) => {
+  try {
+    const { id } = req.body;
+    const user = await usersCollection.get(id);
+    await user.delete();
+
+    res.json({status:'ok'});
   } catch (e) {
     console.error(e);
     res.status(500).json({ error: "Internal Server Error" });

@@ -1,0 +1,25 @@
+<div *ngFor="let user of users" class="media">
+
+  <div class="media-content">
+    <h3 class="mr-3">{{user.id}}</h3>
+    <p>Current hash: {{user.hash}}</p>
+    <p>old hashes: {{user.oldHashes | json}}</p>
+    <p>created: {{user.created! | json}}</p>
+    <div class="field has-addons">
+      <div class="control">
+        <input class="input" type="text" placeholder="set seed" [(ngModel)]="user.customSeed">
+      </div>
+      <div class="control">
+        <button class="button is-info" [disabled]="!user.customSeed || user.customSeed.length < 3"
+                (click)="setSeed(user.id,
+        user.customSeed)">
+          Apply
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="media-right">
+    <button class="button is-danger" (click)="delete(user.id)"><i class="fa fa-trash"></i></button>
+    <button class="button is-warning" (click)="refresh(user.id)"><i class="fa fa-refresh"></i></button>
+  </div>
+</div>

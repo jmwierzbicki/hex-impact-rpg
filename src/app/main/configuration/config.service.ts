@@ -1,43 +1,30 @@
-import { Injectable } from '@angular/core';
-import { appConfigurationDefaults } from '../../../config/constants';
-import { Configuration } from '../models/config';
+import {Injectable} from '@angular/core';
+import {appConfigurationDefaults} from '../../../config/constants';
+import {Configuration} from '../models/config';
+import {HttpClient} from "@angular/common/http";
+import {firstValueFrom} from "rxjs";
 
 @Injectable({
   providedIn: 'root',
 })
 export class ConfigService {
-  get isCustomConfig(): boolean {
-    return !!localStorage.getItem('config');
+
+  public config: Configuration = appConfigurationDefaults
+
+  async getConfig() {
+    this.config = await firstValueFrom(this.client.get<Configuration>(`/api/get-config`))
+    return this.config
   }
 
-  get config(): Configuration {
-    let storedConfig = undefined;
-    const localStorageConfig = localStorage.getItem('config');
-    if (localStorageConfig) {
-      storedConfig = JSON.parse(localStorageConfig);
-    }
-    if (storedConfig) {
-      const finalConfig: Configuration = {...appConfigurationDefaults, ...storedConfig}
-      finalConfig.attributes = {...appConfigurationDefaults.attributes, ...storedConfig.attributes}
-      finalConfig.specialities = {...appConfigurationDefaults.specialities, ...storedConfig.specialities}
-      finalConfig.careers = {...appConfigurationDefaults.careers, ...storedConfig.careers}
-      finalConfig.powers = {...appConfigurationDefaults.powers, ...storedConfig.powers}
-      finalConfig.improvements = {...appConfigurationDefaults.improvements, ...storedConfig.improvements}
-      return finalConfig
-    }
-
-
-    return appConfigurationDefaults;
+  async saveConfig(cfg: Configuration) {
+    cfg.isAltered = true;
+    await firstValueFrom(this.client.post<Configuration>(`/api/set-config`, cfg))
+    await this.getConfig()
+  }
+  async deleteConfig() {
+    await firstValueFrom(this.client.delete<Configuration>(`/api/set-config`))
+    await this.getConfig()
   }
 
-  saveConfig(config: any) {
-    const json = JSON.stringify(config);
-    localStorage.setItem('config', json);
-  }
-
-  clearConfig() {
-    localStorage.removeItem('config');
-  }
-
-  constructor() {}
+  constructor(public client: HttpClient) {}
 }

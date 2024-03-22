@@ -6,6 +6,7 @@ import {app} from "./app";
 app.use(express.static(__dirname + '/../hex-impact-rpg/browser'));
 
 import "./identity"
+import "./configuration"
 
 // If no URL matches, Send all requests to index.html
 app.get('*', function(req, res) {

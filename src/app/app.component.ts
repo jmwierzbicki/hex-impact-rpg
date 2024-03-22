@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {RouterLink, RouterOutlet} from '@angular/router';
 import {MainModule} from './main/main.module';
 import {MatToolbarModule} from '@angular/material/toolbar';
@@ -11,6 +11,7 @@ import {AsyncPipe, NgIf, NgTemplateOutlet} from '@angular/common';
 import {MatCardModule} from '@angular/material/card';
 import {UserService} from "./main/services/user.service";
 import {FormControl, ReactiveFormsModule, Validators} from "@angular/forms";
+import {ConfigService} from "./main/configuration/config.service";
 
 @Component({
   selector: 'app-root',
@@ -33,7 +34,7 @@ import {FormControl, ReactiveFormsModule, Validators} from "@angular/forms";
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   title = 'Hex Impact';
   menuToggled = false;
 
@@ -43,13 +44,15 @@ export class AppComponent {
 
   nameForm = new FormControl('', [Validators.required, Validators.minLength(4)]);
 
-  constructor(private breakpointObserver: BreakpointObserver, public userService: UserService) {
+  constructor(public cfg: ConfigService, private breakpointObserver: BreakpointObserver, public userService: UserService) {
   }
 
+  async ngOnInit() {
+    await this.cfg.getConfig();
+  }
 
   login() {
     if (this.nameForm.valid && this.nameForm.value) {
-      console.log('test')
       this.userService.user = this.nameForm.value
     }
 

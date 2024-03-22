@@ -9,8 +9,6 @@ import {CharacterNameFormComponent} from './hero-creator/character-name-form/cha
 import {AttributeScalerComponent} from './hero-creator/attribute-scaler/attribute-scaler.component';
 import {SpecialitiesSelectorComponent} from './hero-creator/specialities-selector/specialities-selector.component';
 import {PowerFactoryComponent} from './hero-creator/power-factory/power-factory.component';
-import {OriginSelectorComponent} from './hero-creator/origin-selector/origin-selector.component';
-import {SplashScreenComponent} from './hero-creator/splash-screen/splash-screen.component';
 import {HttpClientModule} from '@angular/common/http';
 import {RandomizerApiService} from './services/randomizer-api.service';
 import {PageComponent} from './pdf-creator/page/page.component';
@@ -25,7 +23,10 @@ import {ConfigurationComponent} from './configuration/configuration.component';
 import {ModalComponent} from './helpers/modal/modal.component';
 import {ImprovementsComponent} from './hero-creator/improvements/improvements.component';
 import {WatchObjectDirective} from "./helpers/watch-object.directive";
-import { PowerMediaComponent } from './hero-creator/improvements/power-media/power-media.component';
+import { PowerMediaComponent } from './shared-components/power-media/power-media.component';
+import { PowerBrowserComponent } from './shared-components/power-browser/power-browser.component';
+import { DeactivateRouteComponent } from './deactivate-route-warning/deactivate-route/deactivate-route.component';
+import { UserListComponent } from './user-list/user-list.component';
 
 @NgModule({
   declarations: [
@@ -36,8 +37,6 @@ import { PowerMediaComponent } from './hero-creator/improvements/power-media/pow
     AttributeScalerComponent,
     SpecialitiesSelectorComponent,
     PowerFactoryComponent,
-    OriginSelectorComponent,
-    SplashScreenComponent,
     PageComponent,
     BulkHeroCreateComponent,
     HeroResultCardComponent,
@@ -45,7 +44,10 @@ import { PowerMediaComponent } from './hero-creator/improvements/power-media/pow
     ModalComponent,
     ImprovementsComponent,
     WatchObjectDirective,
-    PowerMediaComponent
+    PowerMediaComponent,
+    PowerBrowserComponent,
+    DeactivateRouteComponent,
+    UserListComponent
   ],
   imports: [
     CommonModule,
@@ -58,6 +60,9 @@ import { PowerMediaComponent } from './hero-creator/improvements/power-media/pow
     FormsModule,
   ],
   providers: [DataBaseService, CsvParserService, RandomizerApiService],
+  exports: [
+    DeactivateRouteComponent
+  ]
 })
 export class MainModule {
 }
