@@ -8,6 +8,10 @@ import { generateId } from 'zoo-ids';
 import html2pdf from 'html2pdf.js';
 import { ConfigService } from '../../configuration/config.service';
 
+import prand from 'pure-rand';
+import {RNG} from "../../helpers/rng";
+import {Deck} from "../../models/Deck";
+
 @Component({
   selector: 'app-bulk-hero-create',
   templateUrl: './bulk-hero-create.component.html',
@@ -18,7 +22,7 @@ export class BulkHeroCreateComponent {
     count: new FormControl(1),
   });
 
-  characters: Hero[] = [];
+  decks: Deck[] = [];
 
   constructor(
     public randomizer: RandomizerApiService,
@@ -26,32 +30,35 @@ export class BulkHeroCreateComponent {
   ) {}
 
   generateTemplates() {
-    this.characters = [];
+    console.log(this.cfg.config)
+    // RNG.toggleSeed(false);
+    this.decks = [];
     let count = this.form.value.count || 1;
     for (let i = 0; i < count; i++) {
-      const hero = new Hero();
-      hero.attributes = this.randomizer.getRandomizedAttributes(
+      const deck = new Deck();
+      deck.attributes = this.randomizer.getAttributeSets(
         this.cfg.config.attributes,
       );
-      hero.originCareer = this.randomizer.getOriginCareerSet(
+      deck.origin = this.randomizer.getOriginSet(
         this.cfg.config.careers,
       );
-      hero.specialitiesSets = this.randomizer.getSpecialitySets(
+      deck.specialitiesSets = this.randomizer.getSpecialitySets(
         this.cfg.config.specialities,
       );
-      hero.powerSets = this.randomizer.getRandomPowerSets(
+      deck.powerSets = this.randomizer.getRandomPowerSets(
         this.cfg.config.powers,
-      );
-      hero.improvements = this.randomizer.getRandomImprovements(
+      ).powerSets;
+      deck.improvements = this.randomizer.getRandomImprovements(
         this.cfg.config.improvements,
       );
 
-      hero.name = generateId(null, {
+      deck.name = generateId(null, {
         caseStyle: 'titlecase',
         delimiter: ' ',
       });
-      this.characters.push(hero);
+      this.decks.push(deck);
     }
+    RNG.toggleSeed(true);
   }
 
   print() {
@@ -86,4 +93,29 @@ export class BulkHeroCreateComponent {
       };
     }
   }
+
+  rng() {
+    // RNG.resetCounter()
+    let a = 0
+
+    let dice = {
+      0: 0,
+      1: 0,
+      2: 0,
+      3: 0,
+      4: 0,
+      5: 0,
+    }
+    for (let i = 0; i < 1000000; i++) {
+      let result = RNG.generate(6)
+      // @ts-ignore
+      dice[result]++
+    }
+    console.log(dice)
+
+
+  }
+  resetRng() {
+  }
+
 }

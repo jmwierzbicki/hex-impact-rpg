@@ -1,33 +1,95 @@
-{{formStep | json}}
-<ng-container *ngIf="db.dbPopulated">
+<h1 class="has-text-centered">Hero creator</h1>
+<nav class="columns is-multiline is-mobile is-centered">
+  <div class="column has-text-centered">
+    <button
+      (click)="formStep = STEPS.ROLL_ATTRS"
+      class="button is-fullwidth"
+      [class.is-outlined]="formStep !== STEPS.ROLL_ATTRS"
+      [class.is-primary]="formStep === STEPS.ROLL_ATTRS"
+    >Attributes
+    </button>
+  </div>
+  <p class="column has-text-centered">
+    <button
+      (click)="formStep = STEPS.ROLL_ORIGIN"
+      class="button is-fullwidth"
+      [class.is-outlined]="formStep !== STEPS.ROLL_ORIGIN"
+      [class.is-primary]="formStep === STEPS.ROLL_ORIGIN"
+    >Origins
+    </button>
+  </p>
+  <p class="column has-text-centered">
+    <button
+      (click)="formStep = STEPS.ROLL_SPECIALITIES"
+      class="button is-fullwidth"
+      [class.is-outlined]="formStep !== STEPS.ROLL_SPECIALITIES"
+      [class.is-primary]="formStep === STEPS.ROLL_SPECIALITIES"
+    >Specialities
+    </button>
+  </p>
+  <p class="column has-text-centered">
+    <button
+      (click)="formStep = STEPS.ROLL_POWERS"
+      class="button is-fullwidth"
+      [class.is-outlined]="formStep !== STEPS.ROLL_POWERS"
+      [class.is-primary]="formStep === STEPS.ROLL_POWERS"
+    >Powers
+    </button>
+  </p>
+  <p class="column has-text-centered">
+    <button
+      (click)="formStep = STEPS.ROLL_IMPROVEMENTS"
+      class="button is-fullwidth"
+      [class.is-outlined]="formStep !== STEPS.ROLL_IMPROVEMENTS"
+      [class.is-primary]="formStep === STEPS.ROLL_IMPROVEMENTS"
+    >Summary
+    </button>
+  </p>
+</nav>
+<ng-container *ngIf="db.dbPopulated | async">
   <ng-container [ngSwitch]="formStep">
 
-    <ng-container *ngSwitchCase="STEPS.START_SCREEN">
-      <app-splash-screen></app-splash-screen>
+    <ng-container *ngSwitchCase="STEPS.ROLL_ATTRS">
+      <app-attribute-scaler
+        [attributeSets]="deck.attributes"
+        [control]="heroCreatorForm.controls.attributes"
+      ></app-attribute-scaler>
     </ng-container>
 
     <ng-container *ngSwitchCase="STEPS.ROLL_ORIGIN">
-      <app-origin-roller></app-origin-roller>
-    </ng-container>
-
-    <ng-container *ngSwitchCase="STEPS.ROLL_ATTRS">
-      <app-attribute-scaler></app-attribute-scaler>
+      <app-origin-roller
+        [control]="heroCreatorForm.controls.origin"
+        [originSets]="deck.origin"
+      ></app-origin-roller>
     </ng-container>
 
     <ng-container *ngSwitchCase="STEPS.ROLL_SPECIALITIES">
-      <app-specialities-selector></app-specialities-selector>
+      <app-specialities-selector
+        [controlArray]="heroCreatorForm.controls.specialities"
+        [revealedCards]="specialityCardDrawn"
+        [specialities]="deck.specialitiesSets"
+        [drawFn]="drawSpecialityCard.bind(this)"
+      ></app-specialities-selector>
     </ng-container>
 
     <ng-container *ngSwitchCase="STEPS.ROLL_POWERS">
-      <app-power-factory></app-power-factory>
+      <app-power-factory
+        [drawFn]="drawPowerCard.bind(this)"
+        [undrawFn]="undrawPowerCard.bind(this)"
+        [powerForm]="heroCreatorForm.controls.powers"
+        [powerTypes]="deck.powerTypes"
+        [powersDrawn]="powerCardsDrawn"
+        [powers]="deck.powerSets"
+      ></app-power-factory>
     </ng-container>
 
-    <ng-container *ngSwitchCase="STEPS.APPLY_ORIGIN">
-      <app-origin-configurator></app-origin-configurator>
-    </ng-container>
+    <app-improvements
+      [hidden]="formStep !== STEPS.ROLL_IMPROVEMENTS"
+      [deck]="deck"
+      [formArray]="improvementForm"
+      [form]="heroCreatorForm"
+    ></app-improvements>
+
   </ng-container>
 </ng-container>
 
-
-<button (click)="previousStep()">Previous</button>
-<button (click)="nextStep()">Next</button>

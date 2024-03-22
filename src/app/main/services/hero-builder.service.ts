@@ -2,12 +2,11 @@ import { Injectable } from '@angular/core';
 import { Hero } from '../models/Hero';
 
 export enum STEPS {
-  START_SCREEN,
   ROLL_ORIGIN,
   ROLL_ATTRS,
   ROLL_SPECIALITIES,
   ROLL_POWERS,
-  APPLY_ORIGIN,
+  ROLL_IMPROVEMENTS,
 }
 
 @Injectable({
@@ -16,6 +15,8 @@ export enum STEPS {
 export class HeroBuilderService {
   hero: Hero = new Hero();
   step: STEPS = 0;
+
+  adjustments: any = {};
 
   constructor() {}
 }

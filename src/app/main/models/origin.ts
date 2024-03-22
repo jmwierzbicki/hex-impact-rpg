@@ -1,10 +1,8 @@
-import { ICareer } from './career';
-
-export type OriginCareer = { id: string; origin: IOrigin; career: ICareer };
-
 export interface IOrigin {
+  id: string;
   name: string;
-  desc: string;
-  mechanicalDesc: string;
+  description: string;
+  example: string;
+  mechanics: string;
   probability: string;
 }

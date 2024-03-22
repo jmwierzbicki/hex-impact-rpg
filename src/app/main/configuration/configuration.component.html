@@ -14,6 +14,18 @@
   </div>
   <div class="field is-horizontal">
     <div class="field-label">
+      <label class="label">Sets count</label>
+    </div>
+    <div class="field-body">
+      <div class="field">
+        <p class="control">
+          <input class="input" [formControl]="configForm.controls.attributes.controls.sets">
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="field is-horizontal">
+    <div class="field-label">
       <label class="label">Initial Value</label>
     </div>
     <div class="field-body">
@@ -112,6 +124,19 @@
       <div class="field">
         <p class="control">
           <input class="input"  [formControl]="configForm.controls.specialities.controls.sets">
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="field is-horizontal">
+    <div class="field-label">
+      <label class="label">Starter specialities</label>
+    </div>
+    <div class="field-body">
+      <div class="field">
+        <p class="control">
+          <input class="input"  [formControl]="configForm.controls.specialities.controls.initialChoices">
         </p>
       </div>
     </div>

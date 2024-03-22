@@ -1,1 +1,18 @@
-<p>attribute-scaler works!</p>
+<div class="columns">
+  <div class="column" *ngFor="let set of attributeSets">
+    <input class="is-hidden" #radioBtn type="radio" name="attributeSetRadio" [formControl]="control" [value]="set">
+    <ul class="box is-clickable"
+        (click)="radioBtn.click()"
+        [class.has-background-success-dark]="radioBtn.checked"
+        [class.has-text-success-light]="radioBtn.checked"
+    >
+      <li><b>awareness</b>: {{ set?.awareness }}</li>
+      <li><b>prowess</b>: {{ set?.prowess }}</li>
+      <li><b>coordination</b>: {{ set?.coordination }}</li>
+      <li><b>intellect</b>: {{ set?.intellect }}</li>
+      <li><b>willpower</b>: {{ set?.willpower }}</li>
+      <li><b>strength</b>: {{ set?.strength }}</li>
+    </ul>
+
+  </div>
+</div>

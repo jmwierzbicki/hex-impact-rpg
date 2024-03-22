@@ -1,0 +1,97 @@
+<div class="section">
+  <div class="content is-medium">
+    <h2>Summary</h2>
+    <p class="subtitle">Apply the below aggregated data to your character
+                        sheet</p>
+    <div class="columns">
+      <div
+        *ngIf="form.value.attributes"
+        class="column"
+      >
+        <h4>Attributes:</h4>
+        <div class="mb-2"><b>awareness</b>:
+          {{ form.value.attributes.awareness }}
+        </div>
+        <div class="mb-2"><b>prowess</b>:
+          {{ form.value.attributes.prowess }}
+        </div>
+        <div class="mb-2"><b>coordination</b>:
+          {{ form.value.attributes.coordination }}
+        </div>
+        <div class="mb-2"><b>intellect</b>:
+          {{ form.value.attributes.intellect }}
+        </div>
+        <div class="mb-2"><b>willpower</b>:
+          {{ form.value.attributes.willpower }}
+        </div>
+        <div class="mb-2"><b>strength</b>:
+          {{ form.value.attributes.strength }}
+        </div>
+      </div>
+      <div
+        (dataChange)="originMechanicCheckbox.checked = false"
+        *ngIf="form.value.origin"
+        [appWatchObject]="form.value.origin"
+        class="column content"
+      >
+        <h4>Selected Origin:</h4>
+        <p class="has-text-weight-bold">{{ form.value.origin.name }}</p>
+        <p class="">{{ form.value.origin.description }}</p>
+        <p
+          class="is-size-7"
+        ><span class=" has-text-weight-bold">
+          <input
+            #originMechanicCheckbox
+            class="mr-4"
+            type="checkbox"
+          >Mechanics:</span>
+          {{ form.value.origin.mechanics }}
+        </p>
+        <p
+          class="is-size-7"
+        ><span class=" has-text-weight-bold">Example:
+        </span> {{
+            form.value.origin.example
+          }}
+        </p>
+      </div>
+    </div>
+    <div
+      *ngFor="let improvement of deck.improvements; index as i"
+      class="block"
+    >
+      <div class="field">
+        <label class="is-clickable">
+          <input
+            [formControl]="formArray.at(i)"
+            class="checkbox"
+            type="checkbox"
+          >
+          {{ improvement.description }}
+        </label>
+
+
+      </div>
+
+    </div>
+    <ul>
+
+    </ul>
+  </div>
+</div>
+
+<div class="section">
+  <div
+    *ngIf="powers.length > 0"
+    class="block"
+  >
+    <h1>Powers:</h1>
+    <ng-container
+      *ngFor="let power of powers"
+
+    >
+      <app-power-media [power]="power"></app-power-media>
+    </ng-container>
+  </div>
+
+</div>

@@ -1,1 +1,86 @@
-<p>power-factory works!</p>
+<hr>
+<div class="columns is-multiline is-mobile is-centered">
+  <div class="column is-narrow " *ngFor="let pwrType of powerTypes">
+    <button
+      (click)="currentType = pwrType"
+
+      class="button level-item"
+      [class.is-dark]="currentType === pwrType"
+    >{{ pwrType }}
+    </button>
+  </div>
+
+</div>
+
+<div *ngFor="let pwrType of powerTypes">
+  @if (pwrType === currentType) {
+    <h3>{{ pwrType }}</h3>
+    <div class="columns">
+      <div
+        class="column box"
+        *ngFor="let powerSet of powers.get(pwrType)?.sets?.slice(0, powersDrawn[pwrType]); index as i"
+      >
+        <div *ngFor="let power of powerSet.powers">
+          <div class="control">
+            <label class="radio"><input
+              [formControl]="getPowerControl(pwrType, i)"
+              type="radio"
+              class="radio"
+              name="{{pwrType}}{{i}}_power-radio"
+              [value]="power"
+            >{{ power.name }}</label>
+            <modal
+              [title]="'Power: ' + power.name"
+              [tpl]="powerModal"
+            >
+              <span class="icon is-large"><i class="fa-solid fa-magnifying-glass"></i></span>
+            </modal>
+            <ng-template #powerModal>
+              <table class="table">
+                <tr>
+                  <td class="has-text-right">type:</td>
+                  <td>{{power.type}}</td>
+                </tr>
+                <tr>
+                  <td class="has-text-right">starting level:</td>
+                  <td>{{power.startingLvl}}</td>
+                </tr><tr>
+                  <td class="has-text-right">difficulty of play:</td>
+                  <td>{{power.difficulty}}</td>
+                </tr>
+              </table>
+              <div class="content is-medium">
+                <h6>Description</h6>
+                <p>{{power.description}}</p>
+                <h6>Choices:</h6>
+                <p>{{power.choiceText}}</p>
+                <h6>Extras text:</h6>
+                <p>{{power.extrasText}}</p>
+              </div>
+
+
+            </ng-template>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button
+      [disabled]="powersByType(pwrType)?.length! <= powersDrawn[pwrType] || powerForm.invalid"
+      class="button is-warning"
+      (click)="drawFn(pwrType)"
+    >Draw {{ pwrType }} power
+    </button>
+
+    <button
+      [disabled]="powersDrawn[pwrType] <= 0"
+      class="button is-danger ml-3"
+      (click)="undrawFn(pwrType)"
+    >Undo draw
+    </button>
+
+  }
+
+</div>
+
+
+

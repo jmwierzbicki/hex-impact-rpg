@@ -2,14 +2,18 @@ export type PowerSet = { powers: IPower[] };
 export type PowerSets = Map<string, { sets: PowerSet[] }>;
 
 export interface IPower {
-  powerID: string;
+  samePowerCount: number;
+  id: string;
+  probability:number;
   active: boolean;
-  powerName: string;
-  powerType: string;
+  name: string;
+  type: string;
   difficulty: string;
   startingLvl: number;
-  powerDesc: string;
-  powerExample: string;
-  powerChoiceText: string;
-  powerExtrasText: string;
+  description: string;
+  example: string;
+  mechanics: string;
+  choiceText: string;
+  extrasText: string;
+  mechanicalTags: string;
 }

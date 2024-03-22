@@ -1,1 +1,13 @@
-<p>origin-roller works!</p>
+<div class="block level">
+  <div *ngFor="let origin of originSets" class="level-item ">
+    <input class="is-hidden" #radioBtn type="radio" name="attributeSetRadio" [formControl]="control" [value]="origin">
+    <div class="box is-clickable"
+         (click)="radioBtn.click()"
+         [class.has-background-success-dark]="radioBtn.checked"
+         [class.has-text-success-light]="radioBtn.checked"
+    >
+      <h1>{{ origin.name }}</h1>
+    </div>
+  </div>
+</div>
+

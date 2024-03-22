@@ -2,6 +2,7 @@ import { Configuration } from '../app/main/models/config';
 
 export const appConfigurationDefaults: Configuration = {
   attributes: {
+    sets: 3,
     initialValue: 4,
     maxValue: 8,
     minValue: 1,
@@ -13,6 +14,7 @@ export const appConfigurationDefaults: Configuration = {
     enabled: true
   },
   specialities: {
+    initialChoices: 2,
     count: 3,
     sets: 12,
     enabled: true

@@ -1,1 +1,39 @@
-<p>specialities-selector works!</p>
+<div class="columns is-multiline">
+  <div
+    *ngFor="let specialitySet of specialities.slice(0, revealedCards); index as i"
+    class="column is-3"
+  >
+    <div class="box">
+      <div class="block" *ngFor="let speciality of specialitySet">
+        <div class="control">
+          <div class="field">
+            <label class="radio">
+              <div class="columns">
+                <div class="column is-narrow pr-0"><input
+                  name="speciality-radio-{{i}}"
+                  type="radio"
+                  [value]="speciality"
+                  [formControl]="controlArray.at(i)"
+                ></div>
+                <div class="column">
+                  <div class="is-bold">{{ speciality.name }}</div>
+                  <div class="is-size-7">{{ speciality.description }}</div>
+                </div>
+              </div>
+
+
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+<button
+  [disabled]="specialities.length! <= revealedCards || controlArray.invalid"
+  class="button is-warning"
+  (click)="drawFn()"
+>Draw speciality
+</button>
+

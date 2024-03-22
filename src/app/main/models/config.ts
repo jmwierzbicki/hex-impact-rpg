@@ -7,6 +7,7 @@ export type Configuration = {
 };
 
 export type AttributesCfg = {
+  sets: number;
   initialValue: number;
   maxValue: number;
   minValue: number;
@@ -19,6 +20,7 @@ export type CareersCfg = {
   enabled:boolean
 };
 export type SpecialitiesCfg = {
+  initialChoices: number;
   count: number;
   sets: number;
   enabled:boolean;

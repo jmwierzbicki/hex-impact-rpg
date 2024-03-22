@@ -1,7 +1,29 @@
-"name",desc,"mechanicalDesc","probability"
-Trained,"The hero is a highly skilled individual; any ""Powers"" actually come from superior training or specialized equipment (see Devices in the Powers chapter).","The character gains two additional specialties, and can choose to trade a power for two more specialties.",2
-Transformed,"The hero was a normal human, but became superhuman through some outside agency, often an accident or experiment.",One of the character's abilities of your choice (attribute or power) is increased by +2 to a maximum of {{powerMax}}.,2
-Birthright,The hero was born with or destined to develop superhuman powers.,"The character gains your choice of one additional power - which should be innate, and not a device - or +2 to a rolled power of your choice, to a maximum of {{powerMax}}",1
-Gimmick,The character's power all come from devices of some kind (see Devices in the Powers chapter).,One of the character's mental attributes of your choice is increased by +2 to a maximum of {{powerMax}}.,2
-Artificial,"The character is a robot or some other kind of construct, such as a golem.","The character's strength is increase by +2 and has the Life Support power in addition to any rolled powers; roll Life Support level normally, or trade a rolled power to increase it to 10.",1
-Unearthly,"The character is an alien, elemental, angel, devil, or even deity - a being from another world or dimension.","increase two of the character's abilities of your choice (attributes or powers) by +2. alternately, roll twice on this table, ignoring duplicates and results of 11-12. The characters gets the effects of both origins. Apply the modifiers of the rolled origins rather than the Unearthy modifiers.",2
+﻿probability,id,name,description,example,mechanics
+2,Origin_Trained,Trained,The hero is a highly skilled individual; any “powers” actually come from superior training or specialized equipment,"WHITE HARPY was an alabino special forces operative who stoped trusting her government to do the right thing. She broke into hidden superlab, picked sonic blaster and some other toys and became a vigilante","Attributes Strenght, Coordination and Prowess can't be higher than 6
+
+Powers can come only from devices
+
+When you calculate your Stamina you can exchange   Strenght for Willpower.
+
+You get 2 bonus random specialities and can increase your lowest attribute by +2"
+3,Origin_Transformed,Transformed,"The hero was a normal human but became superhuman through some outside agency, often an accident or experiment.","LUNAR NOVA was the the first female astronout on Moon, where she found and alien artifact which transformed her and gave her amazin ability. She also augments her powers with special suit designed by NASA","Hero gains one completely random power which they cannot burn to increase other powers. It's level is automatically increased by  +2
+
+Hero needs more natural powers than powers coming from devices"
+2,Origin_Birthright,Birthright,The hero was born with or destined to develop superhuman powers.,MULTI-PRISM was borned to the powerful mutant but was raised as an orphan. Her powers manifested when she broke a mirror on her 13th birthday,"Hero gains one random power from type they don't already have. If they already have all types they can choose any type. This power has increased lvl by +1 and can't be burned
+
+Hero needs more natural powers than powers coming from devices"
+2,Origin_Gimmick,Gimmick,The character’s powers all come from devices of some kind,CENTURION is boy-genius who made his suit inspired by comics he read. He hides his young age behind the mask of 7 feet cybernetic armor,"Attributes Strenght, Coordination and Prowess can't be higher than 6
+
+Powers can come only from devices.
+
+Choose one device - all powers coming from it gain +1 lvl
+
+You gain one specialty related yo your gimmick (GM choice) "
+1,Origin_Artificial,Artificial,"The character is a robot or some other kind of construct, such as a android or golem",TERRAMASTER is chinesee clay-soldier statue brought to life by a powerful spell. Infused with memories of powerful and just warrior he walks the earth to right wrongs. ,"Hero gets Life Support power at lvl 5 to represent their lack of need for sleep, food, breathing and resistance to 2 other means of harm of players choosing
+
+You are immune to most mental attack but can be targeted by magic or technological influence
+
+Hero can't have powers coming from devices
+
+When you calculate your Stamina you can exchange Willpower  for Strenght. "
+1,Origin_Visitor,Visitor,"The character is an alien, elemental, angel, devil, or even deity—a being from another world or dimension.",CURSED CRUCADER was transpored to our world from alternative timeline where earth is in constant state of magical and religious wars and technology stayed at medieval level. His body is covered in magical runes giving him power and he wields magic sword,Add 3 points in any combinations to your attributes. Attributes with values 6+ don't impact your determination.

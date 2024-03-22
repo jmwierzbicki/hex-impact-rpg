@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ConfigService } from './config.service';
+import {appConfigurationDefaults} from "../../../config/constants";
 
 @Component({
   selector: 'app-configuration',
@@ -10,6 +11,7 @@ import { ConfigService } from './config.service';
 export class ConfigurationComponent implements OnInit {
   public configForm = new FormGroup({
     attributes: new FormGroup({
+      sets: new FormControl(),
       initialValue: new FormControl(),
       maxValue: new FormControl(),
       minValue: new FormControl(),
@@ -21,6 +23,7 @@ export class ConfigurationComponent implements OnInit {
       enabled: new FormControl(),
     }),
     specialities: new FormGroup({
+      initialChoices: new FormControl(),
       count: new FormControl(),
       sets: new FormControl(),
       enabled: new FormControl(),
@@ -37,7 +40,8 @@ export class ConfigurationComponent implements OnInit {
   });
 
   ngOnInit() {
-    this.configForm.setValue(this.configService.config);
+    this.configForm.setValue(appConfigurationDefaults);
+    this.configForm.patchValue(this.configService.config);
   }
 
   saveConfig() {

@@ -1,0 +1,72 @@
+<div *ngIf="power" class="media is-block power-container" [class.burned]="burnCheckbox.checked">
+  <div class="is-flex">
+    <div class="media-content">
+      <div class="">
+        <div>
+          <p class="title is-5 has-text-weight-bold">{{ power.name }}</p>
+          <div>
+            <table>
+              <tr>
+                <td class="has-text-right">type</td>
+                <td>{{ power.type }}</td>
+              </tr>
+              <tr>
+                <td class="has-text-right">
+                  starting lvl
+                </td>
+                <td>{{ power.startingLvl }}</td>
+              </tr>
+              <!--                    <tr>-->
+              <!--                      <td class="has-text-right">-->
+              <!--                        difficulty of play-->
+              <!--                      </td>-->
+              <!--                      <td>{{ power.difficulty }}</td>-->
+              <!--                    </tr>-->
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="media-right">
+      <div>
+        <input [appWatchObject]="power" (dataChange)="burnCheckbox.checked = false" class="is-hidden" type="checkbox" #burnCheckbox>
+        <button class="button is-danger" (click)="burnCheckbox.click()">
+          {{ burnCheckbox.checked ? 'unburn power' : 'Burn power 🔥' }}
+        </button>
+        <div class="has-text-right mb-2" *ngIf="burnCheckbox.checked">burn points: {{power.startingLvl + power.samePowerCount-1}} 🔥</div>
+
+      </div>
+      <div
+        *ngIf="power.samePowerCount > 1"
+        class="media-right"
+      >
+        <p class="subtitle is-6">
+          selected {{ power.samePowerCount }} times
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="block">
+    <p *ngIf="power.description"><span class="has-text-weight-bold">description
+                                                              :</span> {{
+        power.description
+      }}</p>
+    <p *ngIf="power.example">
+            <span class="has-text-weight-bold">
+              example:
+            </span> {{ power.example }}
+    </p>
+    <p *ngIf="power.choiceText">
+      <span class="has-text-weight-bold">choices:</span> {{ power.choiceText }}
+    </p>
+    <p *ngIf="power.extrasText">
+            <span class="has-text-weight-bold">
+              extras:</span> {{ power.extrasText }}
+    </p>
+    <div class="tags">
+      <ng-container *ngFor="let tag of power.mechanicalTags.split('|')">
+        <div class="tag is-link is-normal">{{tag}}</div>
+      </ng-container>
+    </div>
+  </div>
+</div>

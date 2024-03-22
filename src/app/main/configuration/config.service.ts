@@ -16,8 +16,18 @@ export class ConfigService {
     if (localStorageConfig) {
       storedConfig = JSON.parse(localStorageConfig);
     }
+    if (storedConfig) {
+      const finalConfig: Configuration = {...appConfigurationDefaults, ...storedConfig}
+      finalConfig.attributes = {...appConfigurationDefaults.attributes, ...storedConfig.attributes}
+      finalConfig.specialities = {...appConfigurationDefaults.specialities, ...storedConfig.specialities}
+      finalConfig.careers = {...appConfigurationDefaults.careers, ...storedConfig.careers}
+      finalConfig.powers = {...appConfigurationDefaults.powers, ...storedConfig.powers}
+      finalConfig.improvements = {...appConfigurationDefaults.improvements, ...storedConfig.improvements}
+      return finalConfig
+    }
 
-    return storedConfig || appConfigurationDefaults;
+
+    return appConfigurationDefaults;
   }
 
   saveConfig(config: any) {

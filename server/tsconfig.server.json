@@ -1,0 +1,17 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "outDir": "../dist",
+    "module": "CommonJS",
+    "types": [
+      "node"
+    ]
+  },
+  "files": [
+    "../server/server.ts",
+  ],
+  "include": [
+    "../server/**/*.d.ts"
+  ]
+}

@@ -1,55 +1,97 @@
-<div class="app-container">
-  <mat-toolbar color="primary">
-    <mat-toolbar-row>
-      <button (click)="drawer.toggle()" *ngIf="isSmallScreen$| async" mat-button>
-        <mat-icon>menu</mat-icon>
-      </button>
-      <span>{{ title }}</span>
-    </mat-toolbar-row>
+@if (userService.loading) {
+  <div class="login-container container">
+    <div class="box loading-box">
+      <h3>Loading...</h3>
+      <progress class="progress is-large is-info" max="100">60%</progress>
+    </div>
 
-    @if (!(isSmallScreen$ | async)) {
-      <mat-toolbar-row class="hide-sm">
-        <ng-container *ngTemplateOutlet="menuItems"></ng-container>
-      </mat-toolbar-row>
-    }
+  </div>
+}
 
-  </mat-toolbar>
-
-
-  <mat-drawer-container autosize class="main-container">
-    <mat-drawer #drawer class="sidenav" mode="side">
-      @if (isSmallScreen$ | async) {
-        <div class="side-nav-container">
-          <ng-container *ngTemplateOutlet="menuItems"></ng-container>
+@if (!userService.user && !userService.loading) {
+  <div class="login-container container">
+    <div class="box login-box">
+      <h1 class="title">Who are You?</h1>
+      <div class="field">
+        <label class="label is-large">Name:</label>
+        <div class="control">
+          <input [formControl]="nameForm" class="input is-large">
         </div>
+      </div>
+      <button [disabled]="nameForm.invalid" class="button is-fullwidth is-primary" (click)="login()">Sign in</button>
+    </div>
+
+  </div>
+}
+
+@if (userService.user && !userService.loading) {
+
+  <div class="app-container">
+    <mat-toolbar color="primary">
+      <mat-toolbar-row>
+        <div class="columns top-bar">
+          <div class="column" *ngIf="isSmallScreen$| async">
+            <button (click)="drawer.toggle()" mat-button>
+              <mat-icon>menu</mat-icon>
+            </button>
+          </div>
+          <div class="column">
+            <span>{{ title }}</span>
+          </div>
+          <div class="column"></div>
+          <div class="column" >
+            <span class="is-pulled-right is-size-7" *ngIf="!userService.user.isAdmin"> <small>{{ userService.user.id}}</small></span>
+          </div>
+        </div>
+
+
+
+      </mat-toolbar-row>
+
+      @if (!(isSmallScreen$ | async)) {
+        <mat-toolbar-row class="hide-sm">
+          <ng-container *ngTemplateOutlet="menuItems"></ng-container>
+        </mat-toolbar-row>
       }
 
+    </mat-toolbar>
 
-    </mat-drawer>
 
-    <ng-template #menuItems>
-<!--      <button mat-button>Create Hero</button>-->
-      <button [routerLink]="'bulk-create'" mat-button>Bulk Create</button>
-      <button [routerLink]="'config'" mat-button>Configuration</button>
-<!--      <button mat-button>Power list</button>-->
-<!--      <button mat-button>Speciality list</button>-->
-    </ng-template>
+    <mat-drawer-container autosize class="main-container">
+      <mat-drawer #drawer class="sidenav" mode="side">
+        @if (isSmallScreen$ | async) {
+          <div class="side-nav-container">
+            <ng-container *ngTemplateOutlet="menuItems"></ng-container>
+          </div>
+        }
 
-    <div class="sidenav-content container">
 
-      <div class="box">
-        <div class="logo-container">
-          <img alt="" class="logo" draggable="false" src="/assets/hex-logo.png">
+      </mat-drawer>
+
+
+
+      <div class="sidenav-content container">
+
+        <div class="box">
+          <div class="logo-container">
+            <img alt="" class="logo" draggable="false" src="/assets/hex-logo.png">
+          </div>
+          <router-outlet/>
         </div>
-        <router-outlet/>
+
+
       </div>
 
 
+    </mat-drawer-container>
+  </div>
 
+}
 
-    </div>
-
-
-
-  </mat-drawer-container>
-</div>
+<ng-template #menuItems>
+  <button mat-button [routerLink]="'hero-creator'">Create Hero</button>
+  <button [routerLink]="'bulk-create'" mat-button>Bulk Create</button>
+  <button [routerLink]="'config'" mat-button>Configuration</button>
+  <!--      <button mat-button>Power list</button>-->
+  <!--      <button mat-button>Speciality list</button>-->
+</ng-template>

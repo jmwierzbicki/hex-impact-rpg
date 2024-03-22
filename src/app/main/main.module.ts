@@ -1,32 +1,31 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { DataBaseService } from './services/data-base.service';
-import { CsvParserService } from './services/csv-parser.service';
-import { HeroCreatorComponent } from './hero-creator/hero-creator.component';
-import { MainComponent } from './main.component';
-import { OriginRollerComponent } from './hero-creator/origin-roller/origin-roller.component';
-import { CharacterNameFormComponent } from './hero-creator/character-name-form/character-name-form.component';
-import { AttributeScalerComponent } from './hero-creator/attribute-scaler/attribute-scaler.component';
-import { SpecialitiesSelectorComponent } from './hero-creator/specialities-selector/specialities-selector.component';
-import { PowerFactoryComponent } from './hero-creator/power-factory/power-factory.component';
-import { OriginConfiguratorComponent } from './hero-creator/origin-configurator/origin-configurator.component';
-import { OriginSelectorComponent } from './hero-creator/origin-selector/origin-selector.component';
-import { SplashScreenComponent } from './hero-creator/splash-screen/splash-screen.component';
-import { HttpClientModule } from '@angular/common/http';
-import { RandomizerApiService } from './services/randomizer-api.service';
-import { PageComponent } from './pdf-creator/page/page.component';
-import { BulkHeroCreateComponent } from './hero-bulk-creator/bulk-hero-create/bulk-hero-create.component';
-import { ReactiveFormsModule } from '@angular/forms';
-import {
-  MatFormField,
-  MatInput,
-  MatInputModule,
-} from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatButton, MatButtonModule } from '@angular/material/button';
-import { MatCardHeader, MatCardModule } from '@angular/material/card';
-import { HeroResultCardComponent } from './hero-creator/hero-result-card/hero-result-card.component';
-import { ConfigurationComponent } from './configuration/configuration.component';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {DataBaseService} from './services/data-base.service';
+import {CsvParserService} from './services/csv-parser.service';
+import {HeroCreatorComponent} from './hero-creator/hero-creator.component';
+import {MainComponent} from './main.component';
+import {OriginRollerComponent} from './hero-creator/origin-roller/origin-roller.component';
+import {CharacterNameFormComponent} from './hero-creator/character-name-form/character-name-form.component';
+import {AttributeScalerComponent} from './hero-creator/attribute-scaler/attribute-scaler.component';
+import {SpecialitiesSelectorComponent} from './hero-creator/specialities-selector/specialities-selector.component';
+import {PowerFactoryComponent} from './hero-creator/power-factory/power-factory.component';
+import {OriginSelectorComponent} from './hero-creator/origin-selector/origin-selector.component';
+import {SplashScreenComponent} from './hero-creator/splash-screen/splash-screen.component';
+import {HttpClientModule} from '@angular/common/http';
+import {RandomizerApiService} from './services/randomizer-api.service';
+import {PageComponent} from './pdf-creator/page/page.component';
+import {BulkHeroCreateComponent} from './hero-bulk-creator/bulk-hero-create/bulk-hero-create.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MatInputModule,} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatButtonModule} from '@angular/material/button';
+import {MatCardModule} from '@angular/material/card';
+import {HeroResultCardComponent} from './hero-creator/hero-result-card/hero-result-card.component';
+import {ConfigurationComponent} from './configuration/configuration.component';
+import {ModalComponent} from './helpers/modal/modal.component';
+import {ImprovementsComponent} from './hero-creator/improvements/improvements.component';
+import {WatchObjectDirective} from "./helpers/watch-object.directive";
+import { PowerMediaComponent } from './hero-creator/improvements/power-media/power-media.component';
 
 @NgModule({
   declarations: [
@@ -37,13 +36,16 @@ import { ConfigurationComponent } from './configuration/configuration.component'
     AttributeScalerComponent,
     SpecialitiesSelectorComponent,
     PowerFactoryComponent,
-    OriginConfiguratorComponent,
     OriginSelectorComponent,
     SplashScreenComponent,
     PageComponent,
     BulkHeroCreateComponent,
     HeroResultCardComponent,
     ConfigurationComponent,
+    ModalComponent,
+    ImprovementsComponent,
+    WatchObjectDirective,
+    PowerMediaComponent
   ],
   imports: [
     CommonModule,
@@ -53,7 +55,9 @@ import { ConfigurationComponent } from './configuration/configuration.component'
     MatFormFieldModule,
     MatButtonModule,
     MatCardModule,
+    FormsModule,
   ],
   providers: [DataBaseService, CsvParserService, RandomizerApiService],
 })
-export class MainModule {}
+export class MainModule {
+}

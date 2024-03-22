@@ -1,10 +1,12 @@
 import { count } from 'rxjs';
+import {RNG} from "./rng";
 
 export function getRandomSet(
   collection: any[],
   count: number,
   weightKey: string,
   idKey: string,
+  unique: boolean = true
 ): any[] {
   const resultCollection: any[] = [];
   let weightedCollection: any[] = [];
@@ -15,12 +17,15 @@ export function getRandomSet(
   });
 
   while (resultCollection.length < count) {
-    const randomIndex = Math.floor(Math.random() * weightedCollection.length);
+    const randomIndex = RNG.generate(weightedCollection.length);
     const randomItem = weightedCollection[randomIndex];
     resultCollection.push(randomItem);
-    weightedCollection = weightedCollection.filter(
-      (item) => item[idKey] !== randomItem[idKey],
-    );
+    if (unique) {
+      weightedCollection = weightedCollection.filter(
+        (item) => item[idKey] !== randomItem[idKey],
+      );
+    }
+
   }
 
   return resultCollection;

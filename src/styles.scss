@@ -1,9 +1,17 @@
 @import "@angular/material/core/core";
 @import "@angular/material/prebuilt-themes/indigo-pink.css";
 @import 'bulma/css/bulma.css';
+@import '@fortawesome/fontawesome-free/css/all.css';
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  print-color-adjust: exact;
+}
 
 .box, div.avoid-break {
   break-inside: avoid;
@@ -13,3 +21,5 @@ body.printable-page {
   margin-left: 10px;
   margin-right: 10px;
 }
+
+

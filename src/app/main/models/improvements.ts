@@ -1,7 +1,5 @@
 export interface IImprovements {
   id: number;
-  name: string;
-  desc: string;
+  description: string;
   probability: number;
-  powerLevel: number;
 }

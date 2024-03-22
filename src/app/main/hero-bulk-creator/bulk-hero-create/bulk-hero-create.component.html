@@ -18,14 +18,20 @@
     <button type="button" class="button is-link" (click)="generateTemplates()">Generate</button>
   </div>
   <div class="control">
-    <button type="button" [disabled]="!characters.length" class="button is-link is-danger" (click)="print()">print</button>
+    <button type="button" [disabled]="!decks.length" class="button is-link is-danger" (click)="print()">print</button>
+  </div>
+  <div class="control">
+    <button type="button" class="button is-link" (click)="rng()">rng</button>
+  </div>
+  <div class="control">
+    <button type="button" class="button is-link" (click)="resetRng()">reset</button>
   </div>
 </div>
 
 
-<div id="character-container" *ngIf="characters.length > 0" class="generation-container">
-  <ng-container *ngFor="let character of characters">
-    <app-hero-result-card [hero]="character"></app-hero-result-card>
+<div id="character-container" *ngIf="decks.length > 0" class="generation-container">
+  <ng-container *ngFor="let deck of decks">
+    <app-hero-result-card [deck]="deck"></app-hero-result-card>
   </ng-container>
 
 

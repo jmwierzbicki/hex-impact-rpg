@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
 import { CsvParserService } from './csv-parser.service';
-import { ISpeciality, Speciality } from '../models/speciality';
+import { ISpeciality } from '../models/speciality';
 import { HttpClient } from '@angular/common/http';
-import { firstValueFrom } from 'rxjs';
+import {BehaviorSubject, firstValueFrom, Subject} from 'rxjs';
 import { ParseResult } from 'papaparse';
 import { IOrigin } from '../models/origin';
-import { ICareer } from '../models/career';
 import { IPower } from '../models/power';
 import { IImprovements } from '../models/improvements';
 
@@ -15,10 +14,9 @@ import { IImprovements } from '../models/improvements';
 export class DataBaseService {
   public specialities: ISpeciality[] = [];
   public origins: IOrigin[] = [];
-  public careers: ICareer[] = [];
   public powers: IPower[] = [];
   public improvements: IImprovements[] = [];
-  public dbPopulated: boolean = false;
+  public dbPopulated: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   constructor(
     public parser: CsvParserService,
@@ -27,10 +25,9 @@ export class DataBaseService {
     (async () => {
       await this.getSpecialities();
       await this.getOrigins();
-      await this.getCareers();
       await this.getPowers();
       await this.getImprovements();
-      this.dbPopulated = true;
+      this.dbPopulated.next(true);
     })();
   }
 
@@ -52,16 +49,6 @@ export class DataBaseService {
     );
     const parsed = this.parser.parse(defaultCsv) as ParseResult<IOrigin>;
     this.origins = parsed.data;
-  }
-
-  async getCareers() {
-    const defaultCsv = await firstValueFrom(
-      this.client.get('/assets/csv/careers.csv', {
-        responseType: 'text',
-      }),
-    );
-    const parsed = this.parser.parse(defaultCsv) as ParseResult<ICareer>;
-    this.careers = parsed.data;
   }
 
   async getPowers() {
