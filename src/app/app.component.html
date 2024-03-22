@@ -9,19 +9,22 @@
 }
 
 @if (!userService.user && !userService.loading) {
-  <div class="login-container container">
-    <div class="box login-box">
-      <h1 class="title">Who are You?</h1>
-      <div class="field">
-        <label class="label is-large">Name:</label>
-        <div class="control">
-          <input [formControl]="nameForm" class="input is-large">
-        </div>
-      </div>
-      <button [disabled]="nameForm.invalid" class="button is-fullwidth is-primary" (click)="login()">Sign in</button>
-    </div>
 
-  </div>
+  <form (submit)="login()">
+    <div class="login-container container">
+      <div class="box login-box">
+        <h1 class="title">Who are You?</h1>
+        <div class="field">
+          <label class="label is-large">Name:</label>
+          <div class="control">
+            <input [formControl]="nameForm" class="input is-large">
+          </div>
+        </div>
+        <button [disabled]="nameForm.invalid" type="submit" class="button is-fullwidth is-primary" (click)="login()">Sign in</button>
+      </div>
+    </div>
+  </form>
+
 }
 
 @if (userService.user && !userService.loading) {
@@ -90,8 +93,8 @@
 
 <ng-template #menuItems>
   <button mat-button [routerLink]="'hero-creator'">Create Hero</button>
-  <button [routerLink]="'bulk-create'" mat-button>Bulk Create</button>
-  <button [routerLink]="'config'" mat-button>Configuration</button>
-  <!--      <button mat-button>Power list</button>-->
+  <button *ngIf="userService.user?.isAdmin" [routerLink]="'bulk-create'" mat-button>Bulk Create</button>
+  <button *ngIf="userService.user?.isAdmin" [routerLink]="'config'" mat-button>Configuration</button>
+        <button mat-button>Power list</button>
   <!--      <button mat-button>Speciality list</button>-->
 </ng-template>

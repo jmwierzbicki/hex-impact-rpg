@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {delay} from "rxjs";
 import {genID} from "../helpers/gen-id";
 import {RNG} from "../helpers/rng";
 
@@ -17,6 +16,7 @@ interface IUser {
   providedIn: 'root'
 })
 export class UserService {
+
   set user(userId: string) {
     this.loading = true;
     userId = genID(userId);

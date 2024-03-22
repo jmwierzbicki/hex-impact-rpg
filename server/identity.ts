@@ -7,7 +7,9 @@ import { generateId } from 'zoo-ids';
 import {genID} from "../src/app/main/helpers/gen-id";
 import e from "express";
 
-const admins = ['Paweł Wojtkiewicz', 'Jakub Wierzbicki test'].map(id => genID(id))
+const adminList: string = process.env['admins']!;
+
+const admins = adminList.split(',').map(id => genID(id))
 const usersCollection = db.collection('users')
 
 app.get('/api/identity/:id', async (req, res) => {
