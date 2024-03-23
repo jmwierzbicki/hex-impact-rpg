@@ -1,6 +1,19 @@
 <section class="hero is-small is-primary">
   <div class="hero-body">
-    <p class="title"><span [class.obscure]="userService.user?.isAdmin">{{ userService.user?.id }}</span></p>
+    <p
+      *ngIf="userService.user?.isAdmin"
+      class="title"
+    >
+      <span class="obscure">{{ userService.obscuredId }}</span></p>
+    <p
+      *ngIf="!userService.user?.isAdmin"
+      class="title"
+    >
+      <span>{{
+        userService.user?.id
+      }}
+      </span>
+    </p>
     <p class="subtitle">{{ userService.user?.hash }}</p>
   </div>
 </section>

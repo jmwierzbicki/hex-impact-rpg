@@ -1,13 +1,20 @@
-
- .obscure {
-   background:
-     repeating-radial-gradient(#000 0 0.011%, #fff 0 0.0011%) 50% 0 / 500px 500px,
-   repeating-conic-gradient(#000 0 0.011%, #fff 0 0.012%) 60% 60% / 500px 500px;
-   background-blend-mode: overlay;
-   animation: b 0.2s infinite alternate;
-   color: transparent;
-
+.obscure {
+  margin: auto;
+  background-image: repeating-radial-gradient(circle at 17% 32%, white, black 0.00085px);
+  animation: tv-static 5s linear infinite;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  color: transparent;
 }
-@keyframes b{
-  100% {background-position: 50% 0, 60% 50%}
+
+@keyframes tv-static {
+  from {
+    background-size: 100% 100%;
+  }
+
+  to {
+    background-size: 200% 200%;
+  }
 }
