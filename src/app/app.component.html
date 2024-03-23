@@ -2,7 +2,11 @@
   <div class="login-container container">
     <div class="box loading-box">
       <h3>Loading...</h3>
-      <progress class="progress is-large is-info" max="100">60%</progress>
+      <progress
+        class="progress is-large is-info"
+        max="100"
+      >60%
+      </progress>
     </div>
 
   </div>
@@ -17,10 +21,19 @@
         <div class="field">
           <label class="label is-large">Name:</label>
           <div class="control">
-            <input [formControl]="nameForm" class="input is-large">
+            <input
+              [formControl]="nameForm"
+              class="input is-large"
+            >
           </div>
         </div>
-        <button [disabled]="nameForm.invalid" type="submit" class="button is-fullwidth is-primary" (click)="login()">Sign in</button>
+        <button
+          [disabled]="nameForm.invalid"
+          type="submit"
+          class="button is-fullwidth is-primary"
+          (click)="login()"
+        >Sign in
+        </button>
       </div>
     </div>
   </form>
@@ -32,36 +45,51 @@
   <div class="app-container">
     <mat-toolbar color="primary">
       <mat-toolbar-row>
-        <div class="columns top-bar">
-          <div class="column" *ngIf="isSmallScreen$| async">
-            <button (click)="drawer.toggle()" mat-button>
+        <div class="level is-mobile">
+          <div
+            class="level-left"
+            *ngIf="isSmallScreen$| async"
+          >
+            <button
+              (click)="drawer.toggle()"
+              mat-button
+            >
               <mat-icon>menu</mat-icon>
             </button>
           </div>
-          <div class="column">
+          <div class="level-left">
             <span>{{ title }}</span>
           </div>
-          <div class="column"></div>
-          <div class="column" >
-            <span class="is-pulled-right is-size-7" *ngIf="!userService.user.isAdmin"> <small>{{ userService.user.id}}</small></span>
+          <div class="level-right">
+            <span
+              class="is-pulled-right is-size-7"
+              *ngIf="!userService.user.isAdmin"
+            > <small>{{ userService.user.id }}</small></span>
           </div>
         </div>
-
 
 
       </mat-toolbar-row>
 
       @if (!(isSmallScreen$ | async)) {
-        <mat-toolbar-row class="hide-sm">
+        <mat-toolbar-row>
           <ng-container *ngTemplateOutlet="menuItems"></ng-container>
         </mat-toolbar-row>
+
       }
 
     </mat-toolbar>
 
 
-    <mat-drawer-container autosize class="main-container">
-      <mat-drawer #drawer class="sidenav" mode="side">
+    <mat-drawer-container
+      autosize
+      class="main-container"
+    >
+      <mat-drawer
+        #drawer
+        class="sidenav"
+        mode="side"
+      >
         @if (isSmallScreen$ | async) {
           <div class="side-nav-container">
             <ng-container *ngTemplateOutlet="menuItems"></ng-container>
@@ -72,12 +100,16 @@
       </mat-drawer>
 
 
-
       <div class="sidenav-content container">
 
         <div class="box">
           <div class="logo-container">
-            <img alt="" class="logo" draggable="false" src="/assets/hex-logo.png">
+            <img
+              alt=""
+              class="logo"
+              draggable="false"
+              src="/assets/hex-logo.png"
+            >
           </div>
           <router-outlet/>
         </div>
@@ -94,9 +126,38 @@
 <app-deactivate-route></app-deactivate-route>
 
 <ng-template #menuItems>
-  <button mat-button [routerLink]="'hero-creator'">Create Hero</button>
-  <button *ngIf="userService.user?.isAdmin" [routerLink]="'bulk-create'" mat-button>Bulk Create</button>
-  <button *ngIf="userService.user?.isAdmin" [routerLink]="'config'" mat-button>Configuration</button>
-        <button mat-button [routerLink]="'power-browser'">Power list</button>
-        <button *ngIf="userService.user?.isAdmin" mat-button [routerLink]="'user-list'">UserList</button>
+  <button
+    [routerLink]="'hero-creator'"
+    mat-button
+  >Create Hero
+  </button>
+  <button
+    *ngIf="userService.user?.isAdmin"
+    [routerLink]="'bulk-create'"
+    mat-button
+  >Bulk Create
+  </button>
+  <button
+    *ngIf="userService.user?.isAdmin"
+    [routerLink]="'config'"
+    mat-button
+  >Configuration
+  </button>
+  <button
+    [routerLink]="'power-browser'"
+    mat-button
+  >Power list
+  </button>
+
+  <button
+    [routerLink]="'guide-page'"
+    mat-button
+  >Guide
+  </button>
+  <button
+    *ngIf="userService.user?.isAdmin"
+    [routerLink]="'user-list'"
+    mat-button
+  >User list
+  </button>
 </ng-template>

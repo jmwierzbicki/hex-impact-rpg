@@ -27,6 +27,11 @@ import { PowerMediaComponent } from './shared-components/power-media/power-media
 import { PowerBrowserComponent } from './shared-components/power-browser/power-browser.component';
 import { DeactivateRouteComponent } from './deactivate-route-warning/deactivate-route/deactivate-route.component';
 import { UserListComponent } from './user-list/user-list.component';
+import { AttributeSetComponent } from './shared-components/attribute-set/attribute-set.component';
+import {AttrDescPipe} from "./shared-components/attribute-set/attr-desc.pipe";
+import {FilterEmptyPipe} from "./helpers/filter-empty.pipe";
+import {MarkdownModule} from "ngx-markdown";
+import { GuidePageComponent } from './guide-page/guide-page.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +52,9 @@ import { UserListComponent } from './user-list/user-list.component';
     PowerMediaComponent,
     PowerBrowserComponent,
     DeactivateRouteComponent,
-    UserListComponent
+    UserListComponent,
+    AttributeSetComponent,
+    GuidePageComponent
   ],
   imports: [
     CommonModule,
@@ -58,6 +65,10 @@ import { UserListComponent } from './user-list/user-list.component';
     MatButtonModule,
     MatCardModule,
     FormsModule,
+    AttrDescPipe,
+    FilterEmptyPipe,
+    MarkdownModule.forRoot()
+
   ],
   providers: [DataBaseService, CsvParserService, RandomizerApiService],
   exports: [

@@ -32,8 +32,11 @@
       </span>
 
       <ng-template #originTmpl>
-        <p>{{origin.description}}</p>
-        <p>{{origin.mechanics}}</p>
+        <div class="has-text-dark">
+          <p>{{origin.description}}</p>
+          <p><b>Example:</b> {{origin.example}}</p>
+          <p><b>Bonus:</b> {{origin.mechanics}}</p>
+        </div>
       </ng-template>
 
     </div>
