@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {RouterLink, RouterOutlet} from '@angular/router';
+import {Router, RouterLink, RouterOutlet} from '@angular/router';
 import {MainModule} from './main/main.module';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
@@ -34,7 +34,7 @@ import {ConfigService} from "./main/configuration/config.service";
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
   title = 'Hex Impact';
   menuToggled = false;
 
@@ -44,7 +44,13 @@ export class AppComponent implements OnInit{
 
   nameForm = new FormControl('', [Validators.required, Validators.minLength(4)]);
 
-  constructor(public cfg: ConfigService, private breakpointObserver: BreakpointObserver, public userService: UserService) {
+  creatorVisible?: boolean;
+
+  constructor(public cfg: ConfigService, private breakpointObserver: BreakpointObserver, public userService: UserService, public router: Router) {
+
+    router.events.subscribe(() => {
+      this.creatorVisible = this.router.url === '/hero-creator'
+    });
   }
 
   async ngOnInit() {

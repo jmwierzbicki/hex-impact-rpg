@@ -10,3 +10,15 @@ table td {
 .power-container.burned p, .power-container.burned table, .power-container.burned .tags-container {
   opacity: 0.5;
 }
+
+@media (max-width: 768px) {
+  .on-mobile-reverse-layout {
+    display:flex;
+    flex-direction: column-reverse !important;
+
+    .media-right {
+      margin-left: 0;
+      margin-bottom: 1rem;
+    }
+  }
+}

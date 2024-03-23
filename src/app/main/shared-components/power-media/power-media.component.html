@@ -1,6 +1,6 @@
 <div *ngIf="power" class="power-container" [class.burned]="burnCheckbox.checked">
   <input [appWatchObject]="power" (dataChange)="burnCheckbox.checked = false" class="is-hidden" type="checkbox" #burnCheckbox>
-  <div class="is-flex">
+  <div class="is-flex-desktop on-mobile-reverse-layout">
     <div class="media-content">
       <div class="">
         <div>

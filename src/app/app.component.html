@@ -112,6 +112,7 @@
             >
           </div>
           <router-outlet/>
+          <app-hero-creator [hidden]="!creatorVisible"></app-hero-creator>
         </div>
 
 
@@ -121,43 +122,52 @@
     </mat-drawer-container>
   </div>
 
+  <ng-template #menuItems>
+    <button
+      [routerLink]="'hero-creator'"
+      mat-button
+      (click)="drawer.close()"
+    >Create Hero
+    </button>
+    <button
+      *ngIf="userService.user?.isAdmin"
+      [routerLink]="'bulk-create'"
+      mat-button
+      (click)="drawer.close()"
+    >Bulk Create
+    </button>
+    <button
+      *ngIf="userService.user?.isAdmin"
+      [routerLink]="'config'"
+      mat-button
+      (click)="drawer.close()"
+    >Configuration
+    </button>
+    <button
+      [routerLink]="'power-browser'"
+      mat-button
+      (click)="drawer.close()"
+    >Power list
+    </button>
+
+    <button
+      [routerLink]="'guide-page'"
+      mat-button
+      (click)="drawer.close()"
+    >Guide
+    </button>
+    <button
+      *ngIf="userService.user?.isAdmin"
+      [routerLink]="'user-list'"
+      mat-button
+      (click)="drawer.close()"
+    >User list
+    </button>
+  </ng-template>
+
+
+
 }
 
 <app-deactivate-route></app-deactivate-route>
 
-<ng-template #menuItems>
-  <button
-    [routerLink]="'hero-creator'"
-    mat-button
-  >Create Hero
-  </button>
-  <button
-    *ngIf="userService.user?.isAdmin"
-    [routerLink]="'bulk-create'"
-    mat-button
-  >Bulk Create
-  </button>
-  <button
-    *ngIf="userService.user?.isAdmin"
-    [routerLink]="'config'"
-    mat-button
-  >Configuration
-  </button>
-  <button
-    [routerLink]="'power-browser'"
-    mat-button
-  >Power list
-  </button>
-
-  <button
-    [routerLink]="'guide-page'"
-    mat-button
-  >Guide
-  </button>
-  <button
-    *ngIf="userService.user?.isAdmin"
-    [routerLink]="'user-list'"
-    mat-button
-  >User list
-  </button>
-</ng-template>

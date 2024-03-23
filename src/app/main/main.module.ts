@@ -32,6 +32,7 @@ import {AttrDescPipe} from "./shared-components/attribute-set/attr-desc.pipe";
 import {FilterEmptyPipe} from "./helpers/filter-empty.pipe";
 import {MarkdownModule} from "ngx-markdown";
 import { GuidePageComponent } from './guide-page/guide-page.component';
+import { DummyPageComponent } from './dummy-page/dummy-page.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { GuidePageComponent } from './guide-page/guide-page.component';
     DeactivateRouteComponent,
     UserListComponent,
     AttributeSetComponent,
-    GuidePageComponent
+    GuidePageComponent,
+    DummyPageComponent
   ],
   imports: [
     CommonModule,
@@ -72,7 +74,8 @@ import { GuidePageComponent } from './guide-page/guide-page.component';
   ],
   providers: [DataBaseService, CsvParserService, RandomizerApiService],
   exports: [
-    DeactivateRouteComponent
+    DeactivateRouteComponent,
+    HeroCreatorComponent
   ]
 })
 export class MainModule {

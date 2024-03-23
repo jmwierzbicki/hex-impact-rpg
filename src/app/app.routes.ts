@@ -7,12 +7,13 @@ import {PowerBrowserComponent} from "./main/shared-components/power-browser/powe
 import {confirmDeactivateGuard} from "./main/deactivate-route-warning/deactivate-route/comfirm-deactivate.guard";
 import {UserListComponent} from "./main/user-list/user-list.component";
 import {GuidePageComponent} from "./main/guide-page/guide-page.component";
+import {DummyPageComponent} from "./main/dummy-page/dummy-page.component";
 
 export const routes: Routes = [
   { pathMatch: 'full', path: '', redirectTo: 'hero-creator' },
   { path: 'bulk-create', component: BulkHeroCreateComponent, canActivate: [adminGuardGuard] },
   { path: 'config', component: ConfigurationComponent, canActivate: [adminGuardGuard] },
-  { path: 'hero-creator', component: HeroCreatorComponent, canDeactivate: [confirmDeactivateGuard] },
+  { path: 'hero-creator', component: DummyPageComponent },
   { path: 'power-browser', component: PowerBrowserComponent },
   { path: 'user-list', component: UserListComponent, canActivate: [adminGuardGuard] },
   { path: 'guide-page', component: GuidePageComponent },
