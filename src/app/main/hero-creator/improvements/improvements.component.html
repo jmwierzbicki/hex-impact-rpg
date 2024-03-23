@@ -1,6 +1,6 @@
 <section class="hero is-small is-primary">
   <div class="hero-body">
-    <p class="title">{{ userService.user?.id }}</p>
+    <p class="title"><span [class.obscure]="userService.user?.isAdmin">{{ userService.user?.id }}</span></p>
     <p class="subtitle">{{ userService.user?.hash }}</p>
   </div>
 </section>

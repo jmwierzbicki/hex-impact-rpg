@@ -1,0 +1,13 @@
+
+ .obscure {
+   background:
+     repeating-radial-gradient(#000 0 0.011%, #fff 0 0.0011%) 50% 0 / 500px 500px,
+   repeating-conic-gradient(#000 0 0.011%, #fff 0 0.012%) 60% 60% / 500px 500px;
+   background-blend-mode: overlay;
+   animation: b 0.2s infinite alternate;
+   color: transparent;
+
+}
+@keyframes b{
+  100% {background-position: 50% 0, 60% 50%}
+}
