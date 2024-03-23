@@ -1,9 +1,7 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {Deck} from "../../models/Deck";
 import {FormArray, FormControl, FormGroup} from "@angular/forms";
-import {HeroBuilderService} from "../../services/hero-builder.service";
 import {Subject, takeUntil} from "rxjs";
-import {ConfigService} from "../../configuration/config.service";
 import {IPower} from "../../models/power";
 import {UserService} from "../../services/user.service";
 

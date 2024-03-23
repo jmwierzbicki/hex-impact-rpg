@@ -46,19 +46,19 @@
     <mat-toolbar color="primary">
       <mat-toolbar-row>
         <div class="level is-mobile flex-grow">
-          <div
-            class="level-left"
-            *ngIf="isSmallScreen$| async"
-          >
-            <button
-              (click)="drawer.toggle()"
-              mat-button
-            >
-              <mat-icon>menu</mat-icon>
-            </button>
-          </div>
           <div class="level-left">
-            <span>{{ title }}</span>
+            <div
+              class="level-item"
+              *ngIf="isSmallScreen$| async"
+            >
+              <button
+                (click)="drawer.toggle()"
+                mat-button
+              >
+                <mat-icon>menu</mat-icon>
+              </button>
+            </div>
+            <span class="level-item">{{ title }}</span>
           </div>
           <div class="level-right">
             <span

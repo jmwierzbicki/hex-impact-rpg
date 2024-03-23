@@ -20,14 +20,16 @@ export interface IUser {
 export class UserService {
   userLoading$: BehaviorSubject<boolean> = new BehaviorSubject(false)
 
-  get obscuredId() {
+  obscuredId = ''
+
+  generateObscuredId() {
     function generateString(length: number): string {
       return Array(length).fill(null).map(() => Math.random().toString(36).charAt(2)).join('');
     }
     if (!this.user) {
       return 'xxxxxxxxx'
     }
-    return  generateString(this.user?.id.length)
+    return  this.obscuredId = generateString(this.user?.id.length)
   }
 
   set user(userId: string) {
@@ -40,6 +42,7 @@ export class UserService {
         RNG.setRngSeed(user.props.hash);
         this.loading = false;
       }
+      this.generateObscuredId();
       this.userLoading$.next(true)
     });
   };
