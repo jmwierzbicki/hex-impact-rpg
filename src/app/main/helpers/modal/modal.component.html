@@ -3,14 +3,14 @@
 </span>
 
 
-<div [class.is-active]="active" class="modal ">
-  <div class="modal-background" (click)="close()"></div>
+<div [class.is-active]="active" class="modal is-unclickable">
+  <div class="modal-background is-unclickable" (click)="close()"></div>
   <div class="modal-card">
     <header class="modal-card-head">
       <p class="modal-card-title">{{ title }}</p>
       <button class="delete" aria-label="close" (click)="close()"></button>
     </header>
-    <section class="modal-card-body">
+    <section class="modal-card-body is-unclickable">
       @if (tpl){
         <ng-container *ngTemplateOutlet="tpl"></ng-container>
       }

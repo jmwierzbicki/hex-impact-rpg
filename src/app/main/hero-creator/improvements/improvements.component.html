@@ -1,91 +1,86 @@
+<section class="hero is-small is-primary">
+  <div class="hero-body">
+    <p class="title">{{ userService.user?.id }}</p>
+    <p class="subtitle">{{ userService.user?.hash }}</p>
+  </div>
+</section>
 <div class="section">
-  <div class="content is-medium">
+  <div class="content">
     <h2>Summary</h2>
-    <p class="subtitle">Apply the below aggregated data to your character
-                        sheet</p>
     <div class="columns">
       <div
         *ngIf="form.value.attributes"
         class="column"
       >
-        <h4>Attributes:</h4>
-        <div class="mb-2"><b>awareness</b>:
-          {{ form.value.attributes.awareness }}
+        <div class="box h-100 is-fullheight">
+          <h3>Attributes:</h3>
+          <app-attribute-set [attributes]="form.value.attributes"></app-attribute-set>
         </div>
-        <div class="mb-2"><b>prowess</b>:
-          {{ form.value.attributes.prowess }}
-        </div>
-        <div class="mb-2"><b>coordination</b>:
-          {{ form.value.attributes.coordination }}
-        </div>
-        <div class="mb-2"><b>intellect</b>:
-          {{ form.value.attributes.intellect }}
-        </div>
-        <div class="mb-2"><b>willpower</b>:
-          {{ form.value.attributes.willpower }}
-        </div>
-        <div class="mb-2"><b>strength</b>:
-          {{ form.value.attributes.strength }}
-        </div>
+
       </div>
       <div
         (dataChange)="originMechanicCheckbox.checked = false"
         *ngIf="form.value.origin"
         [appWatchObject]="form.value.origin"
-        class="column content"
+        class="column is-fullheight "
       >
-        <h4>Selected Origin:</h4>
-        <p class="has-text-weight-bold">{{ form.value.origin.name }}</p>
-        <p class="">{{ form.value.origin.description }}</p>
-        <p
-          class="is-size-7"
-        ><span class=" has-text-weight-bold">
+        <div class="box is-fullheight content">
+          <h3>Origin:</h3>
+          <p class="has-text-weight-bold">{{ form.value.origin.name }}</p>
+          <p class="">{{ form.value.origin.description }}</p>
+          <p
+            class="is-size-7"
+          ><span class=" has-text-weight-bold">Example:
+        </span> {{
+              form.value.origin.example
+            }}
+          </p>
+          <p
+            class="is-size-7"
+          ><span class=" has-text-weight-bold">
           <input
             #originMechanicCheckbox
             class="mr-4"
             type="checkbox"
-          >Mechanics:</span>
-          {{ form.value.origin.mechanics }}
-        </p>
-        <p
-          class="is-size-7"
-        ><span class=" has-text-weight-bold">Example:
-        </span> {{
-            form.value.origin.example
-          }}
-        </p>
-      </div>
-    </div>
-    <div
-      *ngFor="let improvement of deck.improvements; index as i"
-      class="block"
-    >
-      <div class="field">
-        <label class="is-clickable">
-          <input
-            [formControl]="formArray.at(i)"
-            class="checkbox"
-            type="checkbox"
-          >
-          {{ improvement.description }}
-        </label>
+          >Bonus:</span>
+            {{ form.value.origin.mechanics }}
+          </p>
 
+        </div>
 
       </div>
+    </div>
+    <div class="box">
+      <h3>Improvements:</h3>
+      <div class="block content is-medium">
+        <div
+          *ngFor="let improvement of deck.improvements; index as i"
+          class="block"
+        >
+          <div class="field">
+            <label class="is-clickable">
+              <input
+                [formControl]="formArray.at(i)"
+                class="checkbox"
+                type="checkbox"
+              >
+              {{ improvement.description }}
+            </label>
+
+
+          </div>
+
+        </div>
+      </div>
 
     </div>
-    <ul>
-
-    </ul>
   </div>
-</div>
 
-<div class="section">
   <div
-    *ngIf="form.value.specialities.length > 0"
-    class="block"
+    *ngIf="(form.value.specialities | filterEmpty).length > 0"
+    class="block box content"
   >
-    <h1>Specialities:</h1>
+    <h3>Specialities:</h3>
     <ng-container
       *ngFor="let speciality of form.value.specialities"
 
@@ -103,53 +98,64 @@
     </ng-container>
   </div>
 
-</div>
-<div class="section">
+
   <div
     *ngIf="powers.length > 0"
-    class="block"
+    class="block box content"
   >
-    <h1>Powers:</h1>
+    <h3>Powers:</h3>
     <ng-container
       *ngFor="let power of powers"
 
     >
       <app-power-media
-        [power]="power"
         [burn]="true"
+        [power]="power"
         class="media is-block power-container ng-star-inserted"
       ></app-power-media>
     </ng-container>
   </div>
 
-</div>
 
-<div class="section">
   <div
-    class="block"
+    class="block box"
   >
-    <h1>Extra powers:</h1>
-    <p class="subtitle">If for some reason You need to add a power, use following button</p>
+    <div class="content">
+      <h3>Extra powers:</h3>
+      <p class="subtitle">If for some reason You need to add a power, use the following button:</p>
+    </div>
     <div class="block">
-      <modal #modalInstance class="" [tpl]="browserTpl"><button class="block button is-primary">Add powers</button></modal>
+      <modal
+        #modalInstance
+        [tpl]="browserTpl"
+        class=""
+      >
+        <button class="block button is-primary">Add powers</button>
+      </modal>
     </div>
 
     <ng-template #browserTpl>
-      <app-power-browser [addable]="true" (onAdd)="extraPowers.push($event); modalInstance.close()"></app-power-browser>
+      <app-power-browser
+        (onAdd)="extraPowers.push($event); modalInstance.close()"
+        [addable]="true"
+      ></app-power-browser>
     </ng-template>
+    <div class="content">
+      <ng-container
+        *ngFor="let power of extraPowers; index as i"
 
-    <ng-container
-      *ngFor="let power of extraPowers; index as i"
+      >
+        <app-power-media
+          (onDelete)="extraPowers.splice(i, 1)"
+          [burn]="false"
+          [delete]="true"
+          [power]="power"
+          class="media is-block power-container ng-star-inserted"
+        ></app-power-media>
+      </ng-container>
+    </div>
 
-    >
-      <app-power-media
-        [burn]="false"
-        [delete]="true"
-        [power]="power"
-        (onDelete)="extraPowers.splice(i, 1)"
-        class="media is-block power-container ng-star-inserted"
-      ></app-power-media>
-    </ng-container>
   </div>
-
 </div>
+
+

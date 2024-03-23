@@ -5,6 +5,7 @@ import {HeroBuilderService} from "../../services/hero-builder.service";
 import {Subject, takeUntil} from "rxjs";
 import {ConfigService} from "../../configuration/config.service";
 import {IPower} from "../../models/power";
+import {UserService} from "../../services/user.service";
 
 @Component({
   selector: 'app-improvements',
@@ -26,7 +27,7 @@ export class ImprovementsComponent implements OnInit, OnDestroy {
 
 
   ngOnInit() {
-   
+
     this.form.valueChanges.pipe(takeUntil(this.$destroy)).subscribe((val) => {
       this.powers = [];
       const tmpPowers: IPower[] = []
@@ -49,5 +50,8 @@ export class ImprovementsComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.$destroy.next(true);
     this.$destroy.complete();
+  }
+
+  constructor(public userService: UserService) {
   }
 }
