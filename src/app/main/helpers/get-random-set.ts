@@ -10,7 +10,11 @@ export function getRandomSet(
 ): any[] {
   const resultCollection: any[] = [];
   let weightedCollection: any[] = [];
-  count = collection.length < count ? collection.length : count;
+
+  if (unique) {
+    count = collection.length < count ? collection.length : count;
+  }
+
 
   collection.forEach((item) => {
     weightedCollection.push(...new Array(Number(item[weightKey])).fill(item));
