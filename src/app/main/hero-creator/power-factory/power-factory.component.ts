@@ -22,6 +22,7 @@ export class PowerFactoryComponent {
   }
 
   powersByType(type: string) {
+    // console.log(this.powers)
     return this.powers.get(type)?.sets;
   }
 }

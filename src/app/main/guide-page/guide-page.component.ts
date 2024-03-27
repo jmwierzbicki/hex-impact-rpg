@@ -11,9 +11,7 @@ export class GuidePageComponent{
 
   guide = this.client.get('/assets/guide.md', {
     responseType: 'text',
-  }).pipe(tap(data => {
-    console.log(data)
-  }))
+  })
 
   constructor(public client: HttpClient) {
 

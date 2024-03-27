@@ -20,7 +20,7 @@ export class UserListComponent implements OnInit {
 
   getUsers() {
     this.client.get<IUser[]>(`/api/list-users`).subscribe(users => {
-      console.log(users)
+      // console.log(users)
       this.users = users
     });
   }

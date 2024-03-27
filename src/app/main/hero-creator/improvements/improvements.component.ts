@@ -29,7 +29,7 @@ export class ImprovementsComponent implements OnInit, OnDestroy {
     this.form.valueChanges.pipe(takeUntil(this.$destroy)).subscribe((val) => {
       this.powers = [];
       const tmpPowers: IPower[] = []
-      console.log(val)
+      // console.log(val)
       Object.entries(val?.powers as { [key: string]: IPower[] }).forEach(([key, value]) => {
         tmpPowers.push(...value.filter(p => p))
       })

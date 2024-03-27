@@ -111,6 +111,7 @@ export class RandomizerApiService {
 
     let types: string[] = allPowers.map((pwr) => pwr.type);
     types = Array.from(new Set(types)); // unique values
+    types.push('Any type')
 
     let powerByTypeSet = types.reduce(
       (map, type) =>
@@ -120,12 +121,16 @@ export class RandomizerApiService {
         ),
       new Map(),
     );
+    powerByTypeSet.set('Any type', allPowers)
     const powerSets: PowerSets = new Map();
     types.forEach((type) => {
       powerSets.set(type, { sets: genSetsByType(type, sets, count) });
     });
 
     for (let i = 0; i < types.length; i++) {}
+
+    // console.log(types)
+    // console.log(powerSets)
 
     return {powerSets, powerTypes: types};
   }
