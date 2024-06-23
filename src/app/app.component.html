@@ -1,4 +1,4 @@
-@if (userService.loading) {
+@if (false && userService.loading) {
   <div class="login-container container">
     <div class="box loading-box">
       <h3>Loading...</h3>
@@ -12,7 +12,7 @@
   </div>
 }
 
-@if (!userService.user && !userService.loading) {
+@if (false && !userService.user && !userService.loading) {
 
   <form (submit)="login()">
     <div class="login-container container">
