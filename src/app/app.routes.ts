@@ -10,11 +10,12 @@ import {GuidePageComponent} from "./main/guide-page/guide-page.component";
 import {DummyPageComponent} from "./main/dummy-page/dummy-page.component";
 
 export const routes: Routes = [
-  { pathMatch: 'full', path: '', redirectTo: 'hero-creator' },
-  { path: 'bulk-create', component: BulkHeroCreateComponent, canActivate: [adminGuardGuard] },
-  { path: 'config', component: ConfigurationComponent, canActivate: [adminGuardGuard] },
-  { path: 'hero-creator', component: DummyPageComponent },
+  // { pathMatch: 'full', path: '', redirectTo: 'hero-creator' },
+  { pathMatch: 'full', path: '', redirectTo: 'power-browser' },
+  // { path: 'bulk-create', component: BulkHeroCreateComponent, canActivate: [adminGuardGuard] },
+  // { path: 'config', component: ConfigurationComponent, canActivate: [adminGuardGuard] },
+  // { path: 'hero-creator', component: DummyPageComponent },
   { path: 'power-browser', component: PowerBrowserComponent },
-  { path: 'user-list', component: UserListComponent, canActivate: [adminGuardGuard] },
+  // { path: 'user-list', component: UserListComponent, canActivate: [adminGuardGuard] },
   { path: 'guide-page', component: GuidePageComponent },
 ];

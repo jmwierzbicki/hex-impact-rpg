@@ -40,7 +40,7 @@
 
 }
 
-@if (userService.user && !userService.loading) {
+@if (true || userService.user && !userService.loading) {
 
   <div class="app-container">
     <mat-toolbar color="primary">
@@ -61,10 +61,10 @@
             <span class="level-item">{{ title }}</span>
           </div>
           <div class="level-right">
-            <span
-              class="is-pulled-right is-size-7"
-              *ngIf="!userService.user.isAdmin"
-            > <small>{{ userService.user.id }}</small></span>
+<!--            <span-->
+<!--              class="is-pulled-right is-size-7"-->
+<!--              *ngIf="!userService.user.isAdmin"-->
+<!--            > <small>{{ userService.user.id }}</small></span>-->
           </div>
         </div>
 
@@ -123,26 +123,26 @@
   </div>
 
   <ng-template #menuItems>
-    <button
-      [routerLink]="'hero-creator'"
-      mat-button
-      (click)="drawer.close()"
-    >Create Hero
-    </button>
-    <button
-      *ngIf="userService.user?.isAdmin"
-      [routerLink]="'bulk-create'"
-      mat-button
-      (click)="drawer.close()"
-    >Bulk Create
-    </button>
-    <button
-      *ngIf="userService.user?.isAdmin"
-      [routerLink]="'config'"
-      mat-button
-      (click)="drawer.close()"
-    >Configuration
-    </button>
+<!--    <button-->
+<!--      [routerLink]="'hero-creator'"-->
+<!--      mat-button-->
+<!--      (click)="drawer.close()"-->
+<!--    >Create Hero-->
+<!--    </button>-->
+<!--    <button-->
+<!--      *ngIf="userService.user?.isAdmin"-->
+<!--      [routerLink]="'bulk-create'"-->
+<!--      mat-button-->
+<!--      (click)="drawer.close()"-->
+<!--    >Bulk Create-->
+<!--    </button>-->
+<!--    <button-->
+<!--      *ngIf="userService.user?.isAdmin"-->
+<!--      [routerLink]="'config'"-->
+<!--      mat-button-->
+<!--      (click)="drawer.close()"-->
+<!--    >Configuration-->
+<!--    </button>-->
     <button
       [routerLink]="'power-browser'"
       mat-button
@@ -156,13 +156,13 @@
       (click)="drawer.close()"
     >Guide
     </button>
-    <button
-      *ngIf="userService.user?.isAdmin"
-      [routerLink]="'user-list'"
-      mat-button
-      (click)="drawer.close()"
-    >User list
-    </button>
+<!--    <button-->
+<!--      *ngIf="userService.user?.isAdmin"-->
+<!--      [routerLink]="'user-list'"-->
+<!--      mat-button-->
+<!--      (click)="drawer.close()"-->
+<!--    >User list-->
+<!--    </button>-->
   </ng-template>
 
 
