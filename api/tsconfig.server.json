@@ -9,9 +9,9 @@
     ]
   },
   "files": [
-    "../server/server.ts",
+    ".//index.ts"
   ],
   "include": [
-    "../server/**/*.d.ts"
+    ".//**/*.d.ts"
   ]
 }

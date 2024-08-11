@@ -3,31 +3,19 @@ import CyclicDb from "@cyclic.sh/dynamodb"
 import slugify  from "slugify";
 const db: typeof CyclicDb = CyclicDb("modern-lime-goslingCyclicDB")
 // @ts-ignore
-import { generateId } from 'zoo-ids';
-import {genID} from "../src/app/main/helpers/gen-id";
 import {appConfigurationDefaults} from "../src/config/constants";
+import {kv} from '@vercel/kv';
 
-const configCollection = db.collection('config')
-
-app.get('/api/xd', async (req, res) => {
-  try {
-
-    res.json('xd')
-
-  } catch (e) {
-    console.error(e);
-    res.status(500).json({ error: "Internal Server Error" });
-  }
-});
+const CONFIG_KEY = '1'
 
 app.get('/api/get-config', async (req, res) => {
   try {
-    let config = await configCollection.get('1');
+    let config = await kv.get(CONFIG_KEY);
     if (!config) {
       res.json(appConfigurationDefaults)
     }
     else {
-      res.json(config.props)
+      res.json(config)
     }
   } catch (e) {
     console.error(e);
@@ -39,8 +27,8 @@ app.get('/api/get-config', async (req, res) => {
 app.post('/api/set-config', async (req, res) => {
   try {
     const config = req.body;
-    await configCollection.set('1', config, {});
-    await configCollection.get('1')
+    await kv.set(CONFIG_KEY, config, {});
+    await kv.get(CONFIG_KEY)
 
     res.json({status:'ok'})
   } catch (e) {
@@ -52,9 +40,7 @@ app.post('/api/set-config', async (req, res) => {
 
 app.delete('/api/set-config', async (req, res) => {
   try {
-    const config = await configCollection.get('1');
-    await config.delete()
-
+    await kv.del(CONFIG_KEY);
     res.json({status:'ok'})
   } catch (e) {
     console.error(e);

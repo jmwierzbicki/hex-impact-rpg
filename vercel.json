@@ -1,9 +1,21 @@
 {
   "version": 2,
+  "public": false,
+  "framework": "angular",
+  "outputDirectory": "/dist/hex-impact-rpg/browser",
+  "builds": [
+    {
+      "src": "dist/api/index.js",
+      "use": "@vercel/node"
+    }
+  ],
   "routes": [
     {
+      "handle": "filesystem"
+    },
+    {
       "src": "/api/(.*)",
-      "dest": "dist/server/server.js"
+      "dest": "dist/api/index.js"
     }
   ]
 }
