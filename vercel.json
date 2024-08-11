@@ -9,7 +9,7 @@
     },
     {
       "src": "/(.*)",
-      "dest": "dist/hex-impact-app/browser/$1"
+      "dest": "dist/hex-impact-rpg/browser/$1"
     }
   ]
 }
