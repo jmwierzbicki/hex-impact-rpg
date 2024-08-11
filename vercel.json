@@ -5,6 +5,10 @@
     {
       "src": "/(.*)",
       "dest": "/dist/server/server.js"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "dist/hex-impact-app/browser/$1"
     }
   ]
 }
