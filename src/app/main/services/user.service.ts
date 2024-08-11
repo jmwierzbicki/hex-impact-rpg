@@ -35,11 +35,11 @@ export class UserService {
   set user(userId: string) {
     this.loading = true;
     userId = genID(userId);
-    this.client.get<{ props: IUser }>(`/api/identity/${userId}`).subscribe(user => {
+    this.client.get<IUser>(`/api/identity/${userId}`).subscribe(user => {
       if (user) {
         localStorage.setItem('user', userId)
-        this._user = user.props;
-        RNG.setRngSeed(user.props.hash);
+        this._user = user;
+        RNG.setRngSeed(user.hash);
         this.loading = false;
       }
       this.generateObscuredId();

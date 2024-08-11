@@ -4,10 +4,10 @@
   "scripts": {
     "ng": "ng",
     "bld": "ls",
-    "build": "tsc -p api/tsconfig.server.json && ng build",
+    "build": "tsc -p server/tsconfig.server.json && ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "vercel": "tsc -p api/tsconfig.server.json && vercel dev"
+    "vercel": "tsc -p server/tsconfig.server.json && vercel dev"
   },
   "private": true,
   "dependencies": {

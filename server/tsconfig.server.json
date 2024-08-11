@@ -2,14 +2,14 @@
   "extends": "../tsconfig.json",
   "compilerOptions": {
     "esModuleInterop": true,
-    "outDir": "../dist",
+    "outDir": "../api",
     "module": "CommonJS",
     "types": [
       "node"
     ]
   },
   "files": [
-    ".//index.ts"
+    "./index.ts"
   ],
   "include": [
     ".//**/*.d.ts"
