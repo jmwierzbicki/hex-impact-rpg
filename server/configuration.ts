@@ -9,6 +9,17 @@ import {appConfigurationDefaults} from "../src/config/constants";
 
 const configCollection = db.collection('config')
 
+app.get('/api/xd', async (req, res) => {
+  try {
+
+    res.json('xd')
+
+  } catch (e) {
+    console.error(e);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
 app.get('/api/get-config', async (req, res) => {
   try {
     let config = await configCollection.get('1');
