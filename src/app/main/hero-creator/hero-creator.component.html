@@ -2,22 +2,31 @@
 <nav class="columns is-multiline is-mobile is-centered">
   <div class="column has-text-centered">
     <button
+      (click)="formStep = STEPS.IMPROVEMENTS"
+      class="button is-fullwidth"
+      [class.is-outlined]="formStep !== STEPS.IMPROVEMENTS"
+      [class.is-primary]="formStep === STEPS.IMPROVEMENTS"
+    >Improvements
+    </button>
+  </div>
+  <div class="column has-text-centered">
+    <button
       (click)="formStep = STEPS.ROLL_ATTRS"
       class="button is-fullwidth"
       [class.is-outlined]="formStep !== STEPS.ROLL_ATTRS"
       [class.is-primary]="formStep === STEPS.ROLL_ATTRS"
-    >Attributes
+    >Origins and Attributes
     </button>
   </div>
-  <p class="column has-text-centered">
-    <button
-      (click)="formStep = STEPS.ROLL_ORIGIN"
-      class="button is-fullwidth"
-      [class.is-outlined]="formStep !== STEPS.ROLL_ORIGIN"
-      [class.is-primary]="formStep === STEPS.ROLL_ORIGIN"
-    >Origins
-    </button>
-  </p>
+<!--  <p class="column has-text-centered">-->
+<!--    <button-->
+<!--      (click)="formStep = STEPS.ROLL_ORIGIN"-->
+<!--      class="button is-fullwidth"-->
+<!--      [class.is-outlined]="formStep !== STEPS.ROLL_ORIGIN"-->
+<!--      [class.is-primary]="formStep === STEPS.ROLL_ORIGIN"-->
+<!--    >Origins-->
+<!--    </button>-->
+<!--  </p>-->
   <p class="column has-text-centered">
     <button
       (click)="formStep = STEPS.ROLL_SPECIALITIES"
@@ -38,10 +47,10 @@
   </p>
   <p class="column has-text-centered">
     <button
-      (click)="formStep = STEPS.ROLL_IMPROVEMENTS"
+      (click)="formStep = STEPS.SUMMARY"
       class="button is-fullwidth"
-      [class.is-outlined]="formStep !== STEPS.ROLL_IMPROVEMENTS"
-      [class.is-primary]="formStep === STEPS.ROLL_IMPROVEMENTS"
+      [class.is-outlined]="formStep !== STEPS.SUMMARY"
+      [class.is-primary]="formStep === STEPS.SUMMARY"
     >Summary
     </button>
   </p>
@@ -49,19 +58,25 @@
 <ng-container *ngIf="db.dbPopulated | async">
   <ng-container [ngSwitch]="formStep">
 
-    <ng-container *ngSwitchCase="STEPS.ROLL_ATTRS">
-      <app-attribute-scaler
-        [attributeSets]="deck.attributes"
-        [control]="heroCreatorForm.controls.attributes"
-      ></app-attribute-scaler>
+    <ng-container *ngSwitchCase="STEPS.IMPROVEMENTS">
+      <app-improvements [deck]="deck" [formArray]="improvementForm"></app-improvements>
     </ng-container>
 
-    <ng-container *ngSwitchCase="STEPS.ROLL_ORIGIN">
-      <app-origin-roller
-        [control]="heroCreatorForm.controls.origin"
+    <ng-container *ngSwitchCase="STEPS.ROLL_ATTRS">
+      <app-attribute-origin-selector
+        [attributeSets]="deck.attributes"
+        [control]="heroCreatorForm.controls.attributes"
+        [originControl]="heroCreatorForm.controls.origin"
         [originSets]="deck.origin"
-      ></app-origin-roller>
+      ></app-attribute-origin-selector>
     </ng-container>
+
+<!--    <ng-container *ngSwitchCase="STEPS.ROLL_ORIGIN">-->
+<!--      <app-origin-roller-->
+<!--        [originControl]="heroCreatorForm.controls.origin"-->
+<!--        [originSets]="deck.origin"-->
+<!--      ></app-origin-roller>-->
+<!--    </ng-container>-->
 
     <ng-container *ngSwitchCase="STEPS.ROLL_SPECIALITIES">
       <app-specialities-selector
@@ -84,12 +99,11 @@
       ></app-power-factory>
     </ng-container>
 
-    <app-improvements
-      [hidden]="formStep !== STEPS.ROLL_IMPROVEMENTS"
+    <app-summary
+      [hidden]="formStep !== STEPS.SUMMARY"
       [deck]="deck"
-      [formArray]="improvementForm"
       [form]="heroCreatorForm"
-    ></app-improvements>
+    ></app-summary>
 
   </ng-container>
 </ng-container>

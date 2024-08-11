@@ -1,3 +1,9 @@
+<h1>Origins</h1>
+
+<app-origin-roller [originSets]="originSets" [originControl]="originControl"></app-origin-roller>
+
+<h1>Attributes</h1>
+
 <div class="columns">
   <div class="column" *ngFor="let set of attributeSets">
     <input class="is-hidden" #radioBtn type="radio" name="attributeSetRadio" [formControl]="control" [value]="set">

@@ -9,7 +9,7 @@ import {IOrigin} from "../../models/origin";
   styleUrl: './origin-roller.component.scss'
 })
 export class OriginRollerComponent {
-  @Input() control!: FormControl<any>;
+  @Input() originControl!: FormControl<any>;
   @Input() originSets: IOrigin[] = [];
 
   constructor() {

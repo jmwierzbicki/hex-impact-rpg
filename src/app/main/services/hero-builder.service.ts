@@ -2,11 +2,12 @@ import { Injectable } from '@angular/core';
 import { Hero } from '../models/Hero';
 
 export enum STEPS {
+  IMPROVEMENTS,
   ROLL_ORIGIN,
   ROLL_ATTRS,
   ROLL_SPECIALITIES,
   ROLL_POWERS,
-  ROLL_IMPROVEMENTS,
+  SUMMARY,
 }
 
 @Injectable({

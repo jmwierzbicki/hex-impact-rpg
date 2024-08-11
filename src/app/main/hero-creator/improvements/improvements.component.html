@@ -1,177 +1,24 @@
-<section class="hero is-small is-primary">
-  <div class="hero-body">
-    <p
-      *ngIf="userService.user?.isAdmin"
-      class="title"
+<div class="box">
+  <h3>Improvements:</h3>
+  <div class="block content is-medium">
+    <div
+      *ngFor="let improvement of deck.improvements; index as i"
+      class="block"
     >
-      <span class="obscure">{{ userService.obscuredId }}</span></p>
-    <p
-      *ngIf="!userService.user?.isAdmin"
-      class="title"
-    >
-      <span>{{
-        userService.user?.id
-      }}
-      </span>
-    </p>
-    <p class="subtitle">{{ userService.user?.hash }}</p>
-  </div>
-</section>
-<div class="section">
-  <div class="content">
-    <h2 class="mb-6">Summary</h2>
-    <div class="columns">
-      <div
-        *ngIf="form.value.attributes"
-        class="column"
-      >
-        <div class="box h-100 is-fullheight">
-          <h3>Attributes:</h3>
-          <app-attribute-set [attributes]="form.value.attributes"></app-attribute-set>
-        </div>
-
-      </div>
-      <div
-        (dataChange)="originMechanicCheckbox.checked = false"
-        *ngIf="form.value.origin"
-        [appWatchObject]="form.value.origin"
-        class="column is-fullheight "
-      >
-        <div class="box is-fullheight content">
-          <h3>Origin:</h3>
-          <p class="has-text-weight-bold">{{ form.value.origin.name }}</p>
-          <p class="">{{ form.value.origin.description }}</p>
-          <p
-            class="is-size-7"
-          ><span class=" has-text-weight-bold">Example:
-        </span> {{
-              form.value.origin.example
-            }}
-          </p>
-          <p
-            class="is-size-7"
-          ><span class=" has-text-weight-bold">
+      <div class="field">
+        <label class="is-clickable">
           <input
-            #originMechanicCheckbox
-            class="mr-4"
+            [formControl]="formArray.at(i)"
+            class="checkbox"
             type="checkbox"
-          >Bonus:</span>
-            {{ form.value.origin.mechanics }}
-          </p>
-
-        </div>
-
-      </div>
-    </div>
-    <div class="box">
-      <h3>Improvements:</h3>
-      <div class="block content is-medium">
-        <div
-          *ngFor="let improvement of deck.improvements; index as i"
-          class="block"
-        >
-          <div class="field">
-            <label class="is-clickable">
-              <input
-                [formControl]="formArray.at(i)"
-                class="checkbox"
-                type="checkbox"
-              >
-              {{ improvement.description }}
-            </label>
+          >
+          {{ improvement.description }}
+        </label>
 
 
-          </div>
-
-        </div>
       </div>
 
     </div>
   </div>
 
-  <div
-    *ngIf="(form.value.specialities | filterEmpty).length > 0"
-    class="block box content"
-  >
-    <h3>Specialities:</h3>
-    <ng-container
-      *ngFor="let speciality of form.value.specialities"
-
-    >
-      <div
-        *ngIf="speciality"
-        class="media"
-      >
-        <div class="media-content">
-          <h5 class="title is-5 has-text-weight-bold">{{ speciality.name }}</h5>
-          <p>{{ speciality.description }}</p>
-        </div>
-      </div>
-
-    </ng-container>
-  </div>
-
-
-  <div
-    *ngIf="powers.length > 0"
-    class="block box"
-  >
-    <div class="content">
-      <h3>Powers:</h3>
-    </div>
-
-    <ng-container
-      *ngFor="let power of powers"
-
-    >
-      <app-power-media
-        [burn]="true"
-        [power]="power"
-        class="media is-block power-container ng-star-inserted"
-      ></app-power-media>
-    </ng-container>
-  </div>
-
-
-  <div
-    class="block box"
-  >
-    <div class="content">
-      <h3>Extra powers:</h3>
-      <p class="subtitle">If for some reason You need to add a power, use the following button:</p>
-    </div>
-    <div class="block">
-      <modal
-        #modalInstance
-        [tpl]="browserTpl"
-        class=""
-      >
-        <button class="block button is-primary">Add powers</button>
-      </modal>
-    </div>
-
-    <ng-template #browserTpl>
-      <app-power-browser
-        (onAdd)="extraPowers.push($event); modalInstance.close()"
-        [addable]="true"
-      ></app-power-browser>
-    </ng-template>
-    <div class="">
-      <ng-container
-        *ngFor="let power of extraPowers; index as i"
-
-      >
-        <app-power-media
-          (onDelete)="extraPowers.splice(i, 1)"
-          [burn]="false"
-          [delete]="true"
-          [power]="power"
-          class="media is-block power-container ng-star-inserted"
-        ></app-power-media>
-      </ng-container>
-    </div>
-
-  </div>
 </div>
-
-

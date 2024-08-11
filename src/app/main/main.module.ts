@@ -6,7 +6,7 @@ import {HeroCreatorComponent} from './hero-creator/hero-creator.component';
 import {MainComponent} from './main.component';
 import {OriginRollerComponent} from './hero-creator/origin-roller/origin-roller.component';
 import {CharacterNameFormComponent} from './hero-creator/character-name-form/character-name-form.component';
-import {AttributeScalerComponent} from './hero-creator/attribute-scaler/attribute-scaler.component';
+import {AttributeOriginSelectorComponent} from './hero-creator/attribute-scaler/attribute-origin-selector.component';
 import {SpecialitiesSelectorComponent} from './hero-creator/specialities-selector/specialities-selector.component';
 import {PowerFactoryComponent} from './hero-creator/power-factory/power-factory.component';
 import {HttpClientModule} from '@angular/common/http';
@@ -21,7 +21,7 @@ import {MatCardModule} from '@angular/material/card';
 import {HeroResultCardComponent} from './hero-creator/hero-result-card/hero-result-card.component';
 import {ConfigurationComponent} from './configuration/configuration.component';
 import {ModalComponent} from './helpers/modal/modal.component';
-import {ImprovementsComponent} from './hero-creator/improvements/improvements.component';
+import {SummaryComponent} from './hero-creator/summary/summary.component';
 import {WatchObjectDirective} from "./helpers/watch-object.directive";
 import { PowerMediaComponent } from './shared-components/power-media/power-media.component';
 import { PowerBrowserComponent } from './shared-components/power-browser/power-browser.component';
@@ -33,6 +33,7 @@ import {FilterEmptyPipe} from "./helpers/filter-empty.pipe";
 import {MarkdownModule} from "ngx-markdown";
 import { GuidePageComponent } from './guide-page/guide-page.component';
 import { DummyPageComponent } from './dummy-page/dummy-page.component';
+import { ImprovementsComponent } from './hero-creator/improvements/improvements.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,7 @@ import { DummyPageComponent } from './dummy-page/dummy-page.component';
     MainComponent,
     OriginRollerComponent,
     CharacterNameFormComponent,
-    AttributeScalerComponent,
+    AttributeOriginSelectorComponent,
     SpecialitiesSelectorComponent,
     PowerFactoryComponent,
     PageComponent,
@@ -48,7 +49,7 @@ import { DummyPageComponent } from './dummy-page/dummy-page.component';
     HeroResultCardComponent,
     ConfigurationComponent,
     ModalComponent,
-    ImprovementsComponent,
+    SummaryComponent,
     WatchObjectDirective,
     PowerMediaComponent,
     PowerBrowserComponent,
@@ -56,7 +57,8 @@ import { DummyPageComponent } from './dummy-page/dummy-page.component';
     UserListComponent,
     AttributeSetComponent,
     GuidePageComponent,
-    DummyPageComponent
+    DummyPageComponent,
+    ImprovementsComponent
   ],
   imports: [
     CommonModule,

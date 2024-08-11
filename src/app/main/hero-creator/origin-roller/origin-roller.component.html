@@ -4,17 +4,17 @@
     class="column"
   >
     <input
-      #radioBtn
-      [formControl]="control"
+      #radioBtnOrigin
+      [formControl]="originControl"
       [value]="origin"
       class="is-hidden"
-      name="attributeSetRadio"
+      name="OriginSetRadio"
       type="radio"
     >
     <div
-      (click)="radioBtn.click()"
-      [class.has-background-success-dark]="radioBtn.checked"
-      [class.has-text-success-light]="radioBtn.checked"
+      (click)="radioBtnOrigin.click()"
+      [class.has-background-success-dark]="radioBtnOrigin.checked"
+      [class.has-text-success-light]="radioBtnOrigin.checked"
       class="box is-clickable"
     >
       <h1>{{ origin.name }}</h1>

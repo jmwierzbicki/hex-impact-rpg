@@ -16,7 +16,7 @@ import {RNG} from "../helpers/rng";
 })
 export class HeroCreatorComponent implements OnInit {
   public STEPS = STEPS;
-  public formStep: STEPS = STEPS.ROLL_ATTRS;
+  public formStep: STEPS = STEPS.IMPROVEMENTS;
   public deck: Deck = new Deck();
 
   public specialityCardDrawn: number = this.cfg.config.specialities.initialChoices;

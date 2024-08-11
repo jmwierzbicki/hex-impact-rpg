@@ -99,15 +99,12 @@ async function getOrAddUser(userId: string) {
       delimiter: '-',
     })
     let userObject: User = {id, hash, oldHashes: []};
-    console.log(admins)
-    if (admins.includes(id)) {
-      console.log('it is admin!')
-      userObject.isAdmin = true;
-    }
+
     users.push(userObject)
     await kv.set(_USER_PREFIX, users)
     return userObject
   }
+  console.log(admins)
   if (admins.includes(user.id)) {
     user.isAdmin = true;
   }

@@ -82,12 +82,13 @@ async function getOrAddUser(userId) {
             delimiter: '-',
         });
         let userObject = { id, hash, oldHashes: [] };
-        if (admins.includes(id)) {
-            userObject.isAdmin = true;
-        }
         users.push(userObject);
         await kv_1.kv.set(_USER_PREFIX, users);
         return userObject;
+    }
+    console.log(admins);
+    if (admins.includes(user.id)) {
+        user.isAdmin = true;
     }
     return user;
 }
