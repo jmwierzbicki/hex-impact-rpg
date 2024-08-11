@@ -3,6 +3,7 @@
   "public": false,
   "framework": "angular",
   "outputDirectory": "/dist/hex-impact-rpg/browser",
+  "buildCommand": "npm run build",
   "builds": [
     {
       "src": "dist/api/index.js",

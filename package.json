@@ -3,12 +3,10 @@
   "version": "0.1.0",
   "scripts": {
     "ng": "ng",
-    "start": "node dist/server/server.js",
     "bld": "ls",
-    "build": "ng build && tsc -p api/tsconfig.server.json",
+    "build": "tsc -p api/tsconfig.server.json && ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve": "tsc -p api/tsconfig.server.json && node dist/server/server.js",
     "vercel": "tsc -p api/tsconfig.server.json && vercel dev"
   },
   "private": true,
