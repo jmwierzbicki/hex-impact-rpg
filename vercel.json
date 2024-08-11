@@ -4,7 +4,7 @@
   "outputDirectory": "/dist/hex-impact-app/browser",
   "routes": [
     {
-      "src": "/(.*)",
+      "src": "/api/(.*)",
       "dest": "/dist/server/server.js"
     },
     {
