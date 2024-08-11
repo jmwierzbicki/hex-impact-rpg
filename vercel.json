@@ -8,8 +8,12 @@
       "dest": "dist/server/server.js"
     },
     {
+      "src": "/(.*\\..*)",
+      "dest": "/dist/hex-impact-rpg/browser/$1"
+    },
+    {
       "src": "/(.*)",
-      "dest": "dist/hex-impact-rpg/browser/$1"
+      "dest": "/dist/hex-impact-rpg/browser/index.html"
     }
   ]
 }
